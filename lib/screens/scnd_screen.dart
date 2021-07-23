@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import '../model/slide.dart';
 
@@ -6,41 +8,40 @@ class scnd_screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double h  = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           GestureDetector(
             onTap: () {
               print('test');
               Navigator.pop(context);
             },
-            child: Column(
-              children: [
-                FadeInImage.assetNetwork(
-                  fit: BoxFit.contain,
-                  placeholder: 'assets/images/transporter.png',
-                  image: 'assets/images/customer.png',
-
+            child: Container(
+              height: MediaQuery.of(context).size.height*0.5,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/customer.png'),
+                  fit: BoxFit.fill,
                 ),
-              ],
+              ),
             ),
-
           ),
 
           GestureDetector(
             onTap: () {
               print('hello');
             },
-            child: Column(
-              children: [
-                FadeInImage.assetNetwork(
-                  fit: BoxFit.contain,
-                  placeholder: 'assets/images/customer.png',
-                  image: 'assets/images/customer.png',
+            child: Container(
+              height: MediaQuery.of(context).size.height*0.5,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/customer.png'),
+                  fit: BoxFit.fill,
                 ),
-              ],
+              ),
             ),
           ),
         ],

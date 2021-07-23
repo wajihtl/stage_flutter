@@ -26,12 +26,7 @@ class _GettingStartedScreenState extends State<GettingStartedScreen> {
       } else {
         _currentPage = 0;
       }
-
-      _pageController.animateToPage(
-        _currentPage,
-        duration: Duration(milliseconds: 300),
-        curve: Curves.easeIn,
-      );
+      _pageController.animateToPage(_currentPage, duration: Duration(milliseconds: 300), curve: Curves.easeIn,);
     });
   }
 
@@ -117,10 +112,7 @@ class _GettingStartedScreenState extends State<GettingStartedScreen> {
                       padding: const EdgeInsets.all(15),
                       color: Theme.of(context).primaryColor,
                       textColor: Colors.white,
-                      onPressed: () {
-
-                        Navigator.of(context).pushNamed(scnd_screen.routeName);
-                      },
+                      onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => scnd_screen()),),
                     ),
                   ),
 
