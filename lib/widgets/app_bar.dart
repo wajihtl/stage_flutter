@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget appBar() {
+Widget appBar(title) {
   return AppBar(
     elevation: 0.0,
     backgroundColor: Colors.purpleAccent[700],
@@ -8,7 +8,7 @@ Widget appBar() {
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Text(
-          'EASYSHIP',
+          title,
         ),
       ),
     ),
