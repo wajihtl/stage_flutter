@@ -5,11 +5,8 @@ Widget appBar(title) {
     elevation: 0.0,
     backgroundColor: Colors.purpleAccent[700],
     title: Center(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-        child: Text(
-          title,
-        ),
+      child: Text(
+        title,
       ),
     ),
     actions: <Widget>[

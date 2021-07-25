@@ -1,4 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:easyship/tabs/Chat.dart';
 import 'package:easyship/tabs/Profile.dart';
 import 'package:flutter/material.dart';
 import '../tabs/Requests.dart';
@@ -14,12 +15,12 @@ class Navigation extends StatefulWidget {
 
 class _NavigationState extends State<Navigation> {
   int _selectedIndex = 0;
-  String title = 'hi';
+  String title = 'HOME';
   static List<Widget> _widgetOptions = <Widget>[
     Requests(),
-    Center(child: Text('chat Screen')),
+    MyHomePage(),
     Center(child: Text('notifs Screen')),
-    //ProfileTab(),
+    ProfileTab(),
   ];
 
   void _onItemTapped(int index) {
@@ -80,40 +81,6 @@ class _NavigationState extends State<Navigation> {
         },
       ),
 
-      // ################ nawa3 akher taa bottom bar ################"
-      /* bottomNavigationBar: SizedBox(
-        height: 100.0,
-        child: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.globe),
-              title: Text(''),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.message),
-              title: Text(''),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.notifications),
-              title: Text(''),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_pin),
-              title: Text(''),
-            ),
-          ],
-          type: BottomNavigationBarType.fixed,
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          unselectedItemColor: Colors.grey,
-          selectedItemColor: Colors.pink[400],
-          selectedFontSize: 0.0,
-          unselectedFontSize: 0.0,
-          iconSize: 30.0,
-          elevation: 0.0,
-          backgroundColor: Colors.grey[850],
-        ),
-       ), */
     );
   }
 }

@@ -16,14 +16,30 @@ class scnd_screen extends StatelessWidget {
               print('test');
               Navigator.pop(context);
             },
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.5,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/customer.png'),
-                  fit: BoxFit.fill,
+            child: Stack(
+              alignment: Alignment.centerRight,
+              children: [
+
+
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/customer.png'),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                 ),
-              ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text('VOYAGER',),
+                    Text('GAGNER DE L\'ARGENT'),
+                  ],
+                ),
+
+              ],
             ),
           ),
           GestureDetector(
@@ -40,7 +56,7 @@ class scnd_screen extends StatelessWidget {
                 ),
               ),
             ),
-          ),
+          )
         ],
       ),
     );

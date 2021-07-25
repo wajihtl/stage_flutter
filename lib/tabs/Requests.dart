@@ -1,8 +1,15 @@
-import 'package:easyship/widgets/Card.dart';
+import 'package:easyship/widgets/RequestCard.dart';
 import 'package:easyship/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
 
-class Requests extends StatelessWidget {
+class Requests extends StatefulWidget {
+
+
+  @override
+  _RequestsState createState() => _RequestsState();
+}
+
+class _RequestsState extends State<Requests> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,8 +35,8 @@ class Requests extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              quoteTemplate(),
-              quoteTemplate(),
+              RequestCard(),
+              RequestCard(),
             ],
           ),
           floatingActionButton: FloatingActionButton(
