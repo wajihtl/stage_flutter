@@ -69,10 +69,10 @@ class _NavigationState extends State<Navigation> {
         color: Colors.purpleAccent[700],
         backgroundColor: Colors.white,
         items: <Widget>[
-          Icon(Icons.article, size: 30),
-          Icon(Icons.chat_bubble_rounded, size: 30),
-          Icon(Icons.notifications, size: 30),
-          Icon(Icons.person, size: 30),
+          Icon(Icons.article_outlined,color: Colors.white, size: 30),
+          Icon(Icons.chat_bubble_outline_outlined,color: Colors.white, size: 30),
+          Icon(Icons.notifications_none_outlined,color: Colors.white, size: 30),
+          Icon(Icons.person_outline_outlined,color: Colors.white, size: 30),
         ],
         onTap: (index) {
           _selectedIndex = index;

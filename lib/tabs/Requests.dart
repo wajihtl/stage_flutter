@@ -43,9 +43,7 @@ class _RequestsState extends State<Requests> {
             onPressed: () {
               // Add your onPressed code here!
             },
-            child: const Icon(
-              Icons.add,
-            ),
+            child: const Icon(Icons.add,),
             backgroundColor: Colors.purple[700],
           ),
         ),

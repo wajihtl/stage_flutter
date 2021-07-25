@@ -40,77 +40,60 @@ class _ProfileTabState extends State<ProfileTab> {
       padding: EdgeInsets.all(25),
       child: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            GestureDetector(
-              child: CircleAvatar(
-                radius: 80,
-                backgroundImage: _image != null
-                    ? FileImage(_image)
-                    : NetworkImage(
-                        "https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png"),
-              ),
-              onTap: () {
-                showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext bc) {
-                      return Container(
-                        child: new Wrap(
-                          children: <Widget>[
-                            new ListTile(
-                                leading: new Icon(Icons.camera),
-                                title: new Text('Camera'),
-                                onTap: () {
-                                  getImage(ImageSource.camera);
-                                  Navigator.pop(context);
-                                }),
-                            new ListTile(
-                              leading: new Icon(Icons.image),
-                              title: new Text('Gallery'),
-                              onTap: () {
-                                getImage(ImageSource.gallery);
-                                Navigator.pop(context);
-                              },
+            Row(
+              children: [
+                GestureDetector(
+                  child: CircleAvatar(
+                    radius: 35,
+                    backgroundImage: _image != null
+                        ? FileImage(_image)
+                        : NetworkImage(
+                            "https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png"),
+                  ),
+                  onTap: () {
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (BuildContext bc) {
+                          return Container(
+                            child: new Wrap(
+                              children: <Widget>[
+                                new ListTile(
+                                    leading: new Icon(Icons.camera),
+                                    title: new Text('Camera'),
+                                    onTap: () {
+                                      getImage(ImageSource.camera);
+                                      Navigator.pop(context);
+                                    }),
+                                new ListTile(
+                                  leading: new Icon(Icons.image),
+                                  title: new Text('Gallery'),
+                                  onTap: () {
+                                    getImage(ImageSource.gallery);
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      );
-                    });
-              },
-            ),
-            Divider(),
-            Text("data"),
-            SizedBox(
-              height: 4,
-            ),
-            Text("data"),
-            SizedBox(
-              height: 4,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.add),
-                Text("data"),
+                          );
+                        });
+                  },
+                ),
+                SizedBox(width: 15,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("John Dow"),
+                    SizedBox(height: 4,),
+                    Text("john-dow@gmail.com"),
+                  ],
+                ),
               ],
             ),
-            SizedBox(
-              height: 4,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.add),
-                Text("data"),
-              ],
-            ),
-            FlatButton(
-              padding: EdgeInsets.symmetric(horizontal: 70,vertical: 10),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
-              color:Colors.purple[700],
-              onPressed: () {},
-              child: Text('logout', style: TextStyle(color: Colors.white)),
-            ),
+            SizedBox(height: 15,),
+            Divider(height: 15,),
+            SizedBox(height: 25,),
             FlatButton(
               padding: EdgeInsets.all(20),
               shape: RoundedRectangleBorder(
@@ -154,6 +137,17 @@ class _ProfileTabState extends State<ProfileTab> {
                   Expanded(child: Text("text")),
                   Icon(Icons.arrow_forward_ios),
                 ],
+              ),
+            ),
+            SizedBox(height: 30,),
+            Center(
+              child: FlatButton(
+                padding: EdgeInsets.symmetric(horizontal: 100,vertical: 10),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+                color:Colors.purple[700],
+                onPressed: () {},
+                child: Text('Déconnexion', style: TextStyle(color: Colors.white,fontSize: 18)),
               ),
             ),
           ],

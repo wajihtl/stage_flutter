@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:vertical_card_pager/vertical_card_pager.dart';
 
 Widget quoteTemplate() {
   return SingleChildScrollView(
