@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget appBar(title) {
+Widget appBar_T(title) {
   return AppBar(
     elevation: 0.0,
     backgroundColor: Colors.purpleAccent[700],

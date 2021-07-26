@@ -4,14 +4,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ProfileTab extends StatefulWidget {
-  ProfileTab({Key key}) : super(key: key);
+class ProfileTab_S extends StatefulWidget {
+  ProfileTab_S({Key key}) : super(key: key);
 
   @override
-  _ProfileTabState createState() => _ProfileTabState();
+  _ProfileTab_SState createState() => _ProfileTab_SState();
 }
 
-class _ProfileTabState extends State<ProfileTab> {
+class _ProfileTab_SState extends State<ProfileTab_S> {
   File _image;
   List<File> _pickedIamages = [];
 
@@ -145,9 +145,9 @@ class _ProfileTabState extends State<ProfileTab> {
                 padding: EdgeInsets.symmetric(horizontal: 100,vertical: 10),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),
-                color:Colors.purple[700],
+                color:Colors.cyanAccent[100],
                 onPressed: () {},
-                child: Text('Déconnexion', style: TextStyle(color: Colors.white,fontSize: 18)),
+                child: Text('LogOut', style: TextStyle(color: Colors.white,fontSize: 18)),
               ),
             ),
           ],

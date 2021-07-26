@@ -1,15 +1,16 @@
-import 'package:easyship/widgets/RequestCard.dart';
-import 'package:easyship/widgets/app_bar.dart';
+import 'package:easyship/widgets/Sender/OfferCard_S.dart';
+import 'package:easyship/widgets/Traveler/RequestCard_T.dart';
+import 'package:easyship/widgets/Traveler/App_bar_T.dart';
 import 'package:flutter/material.dart';
 
-class Requests extends StatefulWidget {
+class OffersTab_S extends StatefulWidget {
 
 
   @override
-  _RequestsState createState() => _RequestsState();
+  _OffersTab_SState createState() => _OffersTab_SState();
 }
 
-class _RequestsState extends State<Requests> {
+class _OffersTab_SState extends State<OffersTab_S> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,21 +23,21 @@ class _RequestsState extends State<Requests> {
             toolbarHeight: 74.0,
             elevation: 0.0,
             bottom: const TabBar(
-              indicatorColor: Colors.purple,
-              labelColor: Colors.purple,
+              indicatorColor: Colors.cyanAccent,
+              labelColor: Colors.cyanAccent,
               unselectedLabelColor: Colors.grey,
               tabs: [
                 Tab(
-                    text: 'ALL REQUESTS',
+                    text: 'ALL OFFERS',
                     icon: Icon(Icons.auto_awesome_motion)),
-                Tab(text: 'MY REQUESTS', icon: Icon(Icons.bookmarks_rounded)),
+                Tab(text: 'MY OFFERS', icon: Icon(Icons.bookmarks_rounded)),
               ],
             ),
           ),
           body: TabBarView(
             children: [
-              RequestCard(),
-              RequestCard(),
+              OfferCard_S(),
+              OfferCard_S(),
             ],
           ),
           floatingActionButton: FloatingActionButton(
@@ -44,7 +45,7 @@ class _RequestsState extends State<Requests> {
               // Add your onPressed code here!
             },
             child: const Icon(Icons.add,),
-            backgroundColor: Colors.purple[700],
+            backgroundColor: Colors.cyanAccent[100],
           ),
         ),
       ),

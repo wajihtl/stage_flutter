@@ -1,26 +1,29 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:easyship/tabs/Chat.dart';
-import 'package:easyship/tabs/Profile.dart';
+import 'package:easyship/tabs/Traveler/Profile_loggedOut_T.dart';
+import 'package:easyship/tabs/Traveler/Chat_T.dart';
+import 'package:easyship/tabs/Traveler/Notifs_T.dart';
+import 'package:easyship/tabs/Traveler/Profile_T.dart';
 import 'package:flutter/material.dart';
-import '../tabs/Requests.dart';
-import '../widgets/app_bar.dart';
-import '../widgets/drawer.dart';
+import '../../tabs/Traveler/Requests_T.dart';
+import 'App_bar_T.dart';
+import 'Drawer_T.dart';
 
-class Navigation extends StatefulWidget {
-  Navigation({Key key}) : super(key: key);
+class Navigation_T extends StatefulWidget {
+  Navigation_T({Key key}) : super(key: key);
 
   @override
-  _NavigationState createState() => _NavigationState();
+  _Navigation_TState createState() => _Navigation_TState();
 }
 
-class _NavigationState extends State<Navigation> {
+class _Navigation_TState extends State<Navigation_T> {
   int _selectedIndex = 0;
-  String title = 'HOME';
+  String title = 'REQUESTS';
   static List<Widget> _widgetOptions = <Widget>[
-    Requests(),
-    MyHomePage(),
-    Center(child: Text('notifs Screen')),
-    ProfileTab(),
+    RequestsTab_T(),
+    ChatTab_T(),
+    NotifsTab_T(),
+    Profile_loggedOut_T()
+    //ProfileTab_T(),
   ];
 
   void _onItemTapped(int index) {
@@ -33,7 +36,7 @@ class _NavigationState extends State<Navigation> {
     switch (index) {
       case 0:
         setState(() {
-          title = 'HOME';
+          title = 'REQUESTS';
         });
         break;
       case 1:
@@ -58,8 +61,8 @@ class _NavigationState extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: drawer(),
-      appBar: appBar(title),
+      drawer: drawer_T(),
+      appBar: appBar_T(title),
       body: IndexedStack(
         index: _selectedIndex,
         children: _widgetOptions,
@@ -67,12 +70,14 @@ class _NavigationState extends State<Navigation> {
       bottomNavigationBar: CurvedNavigationBar(
         height: 60,
         color: Colors.purpleAccent[700],
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         items: <Widget>[
-          Icon(Icons.article_outlined,color: Colors.white, size: 30),
-          Icon(Icons.chat_bubble_outline_outlined,color: Colors.white, size: 30),
-          Icon(Icons.notifications_none_outlined,color: Colors.white, size: 30),
-          Icon(Icons.person_outline_outlined,color: Colors.white, size: 30),
+          Icon(Icons.article_outlined, color: Colors.white, size: 30),
+          Icon(Icons.chat_bubble_outline_outlined,
+              color: Colors.white, size: 30,),
+          Icon(Icons.notifications_none_outlined,
+              color: Colors.white, size: 30),
+          Icon(Icons.person_outline_outlined, color: Colors.white, size: 30),
         ],
         onTap: (index) {
           _selectedIndex = index;
@@ -80,7 +85,6 @@ class _NavigationState extends State<Navigation> {
           _changeTitle(index);
         },
       ),
-
     );
   }
 }

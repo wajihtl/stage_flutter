@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget ChatCard() {
+Widget ChatCard_T() {
   return Card(
           elevation: 2,
           child: Padding(
@@ -14,7 +14,7 @@ Widget ChatCard() {
                   margin: EdgeInsets.only(left: 10),
                   width: 60.0,
                   height: 60.0,
-                  decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/slider1.png'), fit: BoxFit.cover),
+                  decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/avatar.png'), fit: BoxFit.cover),
                     borderRadius: BorderRadius.all(Radius.circular(75.0)),),
                 ),
                 Container(
@@ -24,7 +24,8 @@ Widget ChatCard() {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('@anonymous'),
-                        Text("message"),
+                        SizedBox(height: 5.0,),
+                        Container(width:150.0, child: Text("this is a great service!")),
                       ],
                     )),
                 Spacer(flex: 1,),
