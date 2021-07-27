@@ -40,7 +40,7 @@ class _Navigation_SState extends State<Navigation_S> {
     switch (index) {
       case 0:
         setState(() {
-          widget.checkType? title = 'OFFERS' : title = 'TEst';
+          widget.checkType? title = 'OFFERS' : title = 'Test';
         });
         break;
       case 1:
