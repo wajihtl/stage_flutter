@@ -1,69 +1,291 @@
+import 'dart:io';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SignUpPage extends StatefulWidget {
-  SignUpPage({Key key}) : super(key: key);
-
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  TextEditingController _emailControl = new TextEditingController();
-  TextEditingController _passwordControl = new TextEditingController();
+  int _currentStep = 0;
+  StepperType stepperType = StepperType.vertical;
+  File _image;
+  List<File> _pickedIamages = [];
 
-  bool _isLoading = false;
-  String _errMessage = "";
+  String _dropdownValue = "Country";
+  bool agree = false;
+
+  final picker = ImagePicker();
+
+  Future getImage(ImageSource source) async {
+    final pickedFile = await picker.getImage(source: source);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+
+        setState(() {
+          _pickedIamages.add(File(pickedFile.path));
+        });
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('SIGN UP '),
+        backgroundColor: Colors.cyanAccent[100],
+        // automaticallyImplyLeading: false,
+        title: Text('Sign Up'),
+        centerTitle: true,
       ),
-      body: Center(
+      body: Container(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(15),
-              child: TextField(
-                decoration: InputDecoration(errorText: null),
-                controller: _emailControl,
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(15),
-              child: TextField(
-                controller: _passwordControl,
-                obscureText: true,
-              ),
-            ),
-            _isLoading == false
-                ? ElevatedButton(
-                    onPressed: () {
-                      // create account firebase
+          children: [
+            Expanded(
+              child: Container(
+                child: Theme(
+                  data: ThemeData(
+                      primaryColor: Colors.cyanAccent[100],
+                      colorScheme:
+                          ColorScheme.light(primary: Colors.cyanAccent[100])),
+                  child: Stepper(
+                    type: stepperType,
+                    physics: ScrollPhysics(),
+                    currentStep: _currentStep,
+                    onStepTapped: (step) => tapped(step),
+                    onStepContinue: continued,
+                    onStepCancel: cancel,
+                    controlsBuilder: (BuildContext context,
+                        {VoidCallback onStepContinue,
+                        VoidCallback onStepCancel}) {
+                      return stepperType == StepperType.vertical
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Expanded(
+                                  child: TextButton(
+                                    style: TextButton.styleFrom(
+                                        primary: Colors.white,
+                                        backgroundColor: agree ?
+                                            Colors.cyanAccent[100] : Colors.grey[350]),
+                                    onPressed: agree ? onStepContinue : null,
+                                    child: Text('NEXT'),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10.0,
+                                ),
+                                TextButton(
+                                  style: TextButton.styleFrom(
+                                      primary: Colors.white,
+                                      backgroundColor: Colors.redAccent[200]),
+                                  onPressed: onStepCancel,
+                                  child: Text('CANCEL'),
+                                ),
+                              ],
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                TextButton(
+                                  style: TextButton.styleFrom(
+                                      primary: Colors.white,
+                                      backgroundColor: agree ?
+                                      Colors.cyanAccent[100] : Colors.grey[350]),
+                                  onPressed: agree ? onStepContinue : null,
+                                  child: Text('NEXT'),
+                                ),
+                                SizedBox(width: 10.0),
+                                TextButton(
+                                  style: TextButton.styleFrom(
+                                      primary: Colors.white,
+                                      backgroundColor: Colors.redAccent[200]),
+                                  onPressed: onStepCancel,
+                                  child: Text('CANCEL'),
+                                ),
+                              ],
+                            );
                     },
-                    child: Text('CREATE ACCOUNT'),
-                  )
-                : CircularProgressIndicator(),
-            _errMessage == ""
-                ? Container()
-                : Container(
-                    margin: EdgeInsets.all(15),
-                    padding: EdgeInsets.all(20),
-                    color: Colors.red.shade700,
-                    child: Text(
-                      _errMessage,
-                      style: TextStyle(color: Colors.white),
-                    ),
+                    steps: <Step>[
+                      Step(
+                        title: new Text('Account'),
+                        content: Column(
+                          children: <Widget>[
+                            TextFormField(
+                              decoration:
+                                  InputDecoration(labelText: 'First Name'),
+                            ),
+                            TextFormField(
+                              decoration:
+                                  InputDecoration(labelText: 'Last Name'),
+                            ),
+                            TextFormField(
+                              decoration:
+                                  InputDecoration(labelText: 'Username'),
+                            ),
+                            TextFormField(
+                              decoration: InputDecoration(labelText: 'E-mail'),
+                            ),
+                            TextFormField(
+                              decoration:
+                                  InputDecoration(labelText: 'Phone Number'),
+                            ),
+                            DropdownButton<String>(
+                              underline: Divider(
+                                color: Colors.white,
+                              ),
+                              isExpanded: true,
+                              hint: TextFormField(
+                                decoration:
+                                    InputDecoration(labelText: _dropdownValue),
+                              ),
+                              items: <String>['France', 'Tunis']
+                                  .map((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (String newValue) {
+                                setState(() {
+                                  _dropdownValue = newValue;
+                                });
+                              },
+                            ),
+                            TextFormField(
+                              decoration:
+                                  InputDecoration(labelText: 'Password'),
+                            ),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                  labelText: 'Confirm password'),
+                            ),
+                            Row(
+                              children: [
+                                Checkbox(
+                                  value: agree,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      agree = value;
+                                    });
+                                  },
+                                ),
+                                Container(
+                                  padding:
+                                      EdgeInsets.only(top: 30.0, bottom: 30.0),
+                                  width: 200.0,
+                                  child: Text(
+                                    'I have read and accept terms and conditions.',
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        isActive: _currentStep >= 0,
+                        state: _currentStep == 0
+                            ? StepState.editing
+                            : StepState.complete,
+
+
+                      ),
+                      Step(
+                        title: new Text('Photo'),
+                        content: Column(
+                          children: <Widget>[
+                            GestureDetector(
+                              child: Container(
+                                margin:
+                                    EdgeInsets.only(top: 20.0, bottom: 25.0),
+                                width: 200.0,
+                                height: 200.0,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: _image != null
+                                          ? FileImage(_image)
+                                          : AssetImage(
+                                              'assets/images/avatar.png'),
+                                      fit: BoxFit.cover),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(100.0)),
+                                ),
+                              ),
+                              onTap: () {
+                                showModalBottomSheet(
+                                    context: context,
+                                    builder: (BuildContext bc) {
+                                      return Container(
+                                        child: new Wrap(
+                                          children: <Widget>[
+                                            new ListTile(
+                                                leading: new Icon(Icons.camera),
+                                                title: new Text('Camera'),
+                                                onTap: () {
+                                                  getImage(ImageSource.camera);
+                                                  Navigator.pop(context);
+                                                }),
+                                            new ListTile(
+                                              leading: new Icon(Icons.image),
+                                              title: new Text('Gallery'),
+                                              onTap: () {
+                                                getImage(ImageSource.gallery);
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    });
+                              },
+                            ),
+                          ],
+                        ),
+                        isActive: _currentStep >= 0,
+                        state: _currentStep == 1
+                            ? StepState.editing
+                            : StepState.disabled,
+                      ),
+                    ],
                   ),
-            FlatButton(
-              child: Text("Create account"),
-              onPressed: () {},
-            )
+                ),
+              ),
+            ),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.cyanAccent[100],
+        child: Icon(Icons.crop_rotate),
+        onPressed: switchStepsType,
+      ),
     );
+  }
+
+  switchStepsType() {
+    setState(() => stepperType == StepperType.vertical
+        ? stepperType = StepperType.horizontal
+        : stepperType = StepperType.vertical);
+  }
+
+  tapped(int step) {
+    setState(() => _currentStep = step);
+  }
+
+  continued() {
+    _currentStep < 1 ? setState(() => _currentStep += 1) : null;
+  }
+
+  cancel() {
+    _currentStep == 0
+        ? Navigator.pop(context)
+        : setState(() => _currentStep -= 1);
+    // _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
   }
 }

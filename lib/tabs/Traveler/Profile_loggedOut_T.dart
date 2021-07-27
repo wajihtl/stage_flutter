@@ -28,7 +28,7 @@ class Profile_loggedOut_T extends StatelessWidget {
             width: 350.0,
             child: Expanded(
                 child: Text(
-                    "to get the most out of EASYSHIP, please login or create an account.",
+                    "To get the most out of EASYSHIP, please login or create an account.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 15,
