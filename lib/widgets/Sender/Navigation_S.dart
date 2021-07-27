@@ -9,7 +9,10 @@ import 'App_bar_S.dart';
 import 'Drawer_S.dart';
 
 class Navigation_S extends StatefulWidget {
-  Navigation_S({Key key}) : super(key: key);
+
+  final bool checkType;
+
+  Navigation_S({Key key, this.checkType}) : super(key: key);
 
   @override
   _Navigation_SState createState() => _Navigation_SState();
@@ -37,7 +40,7 @@ class _Navigation_SState extends State<Navigation_S> {
     switch (index) {
       case 0:
         setState(() {
-          title = 'OFFERS';
+          widget.checkType? title = 'OFFERS' : title = 'TEst';
         });
         break;
       case 1:

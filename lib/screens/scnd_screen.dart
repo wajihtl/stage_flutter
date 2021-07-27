@@ -45,10 +45,7 @@ class scnd_screen extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Navigation_S()),
-            ),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Navigation_S(checkType: false,))),
             child: Stack(
               alignment: Alignment.centerRight,
               children: [
@@ -72,7 +69,6 @@ class scnd_screen extends StatelessWidget {
                     Text('NEAR YOU    ',  style: TextStyle(color: Colors.white,fontSize: 25, fontStyle: FontStyle.italic)),
                   ],
                 ),
-
               ],
             ),
           ),
