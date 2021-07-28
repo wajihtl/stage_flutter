@@ -1,5 +1,5 @@
 import 'package:easyship/widgets/Traveler/Navigation_T.dart';
-import 'package:easyship/widgets/Sender//Navigation_S.dart';
+import 'package:easyship/widgets/Sender/Navigation_S.dart';
 import 'package:flutter/material.dart';
 
 class scnd_screen extends StatelessWidget {
@@ -52,10 +52,7 @@ class scnd_screen extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Navigation_S()),
-            ),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Navigation_S()),),
             child: Stack(
               alignment: Alignment.centerRight,
               children: [

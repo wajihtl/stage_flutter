@@ -9,7 +9,7 @@ class Search_T extends StatefulWidget {
   _Search_TState createState() => _Search_TState();
 }
 
-class _Search_TState extends State<Search_T> {
+class _Search_TState extends State<Search_T> with SingleTickerProviderStateMixin {
   String _country_D = "Country";
   String _city_D = "City";
   String _country_A = "Country";
@@ -17,12 +17,20 @@ class _Search_TState extends State<Search_T> {
 
   DateTime _dateTime;
 
+  TabController tabController;
+
+  void initState() {
+    tabController = TabController(length: 4, vsync: this, initialIndex: 0);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar_T("SEARCH REQUESTS", false),
       body: SingleChildScrollView(
         child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [
               Padding(
@@ -178,16 +186,33 @@ class _Search_TState extends State<Search_T> {
                 ),
               ),
               Divider(),
-              Row(
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 5),
+                child: TabBar(
+                  onTap: (index) {
+                    print('get index : $index');
+                  },
+                  controller: tabController,
+                  indicatorColor: Colors.purple,
+                  labelColor: Colors.purple,
+                  unselectedLabelColor: Colors.grey,
+                  tabs: [
+                    Icon(Icons.airplanemode_on),
+                    Icon(Icons.car_repair),
+                    Icon(Icons.train_rounded),
+                    Icon(Icons.directions_boat_sharp),
+                  ],
+                ),
+              ),
+          /*    Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Icon(Icons.airplanemode_on),
                   Icon(Icons.car_repair),
                   Icon(Icons.train_rounded),
                   Icon(Icons.directions_boat_sharp),
-
                 ],
-              ),
+              ),*/
               Divider(),
 
               Padding(

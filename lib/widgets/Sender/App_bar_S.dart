@@ -1,6 +1,8 @@
+import 'package:easyship/screens/Search_T.dart';
 import 'package:flutter/material.dart';
 
-Widget appBar_S(title,search) {
+Widget appBar_S(context, title, search) {
+ // Widget appBar_S(BuildContext context, title, search) {
   return AppBar(
     elevation: 0.0,
     backgroundColor: Colors.cyanAccent[100],
@@ -11,12 +13,9 @@ Widget appBar_S(title,search) {
     ),
     actions: <Widget>[
       IconButton(
-        icon: Icon( search?
-          Icons.search_sharp : null ,
-        ),
-        onPressed: () => {},
+        icon: Icon(search? Icons.search_sharp : null),
+        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Search_T()),),
       ),
-
     ],
   );
 }

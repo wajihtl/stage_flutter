@@ -67,7 +67,7 @@ class _Navigation_SState extends State<Navigation_S> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: drawer_S(),
-      appBar: appBar_S(title,search),
+      appBar: appBar_S(context, title, search),
       body: IndexedStack(
         index: _selectedIndex,
         children: _widgetOptions,
