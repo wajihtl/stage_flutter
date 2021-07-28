@@ -55,6 +55,17 @@ class drawer_S extends StatelessWidget {
               ),
               FlatButton(
                 child: Row(children: <Widget>[
+                  Icon(Icons.logout, size: 40),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Text('Logout'),
+                  ),
+                ]),
+                onPressed: () => print('test'),
+                padding: EdgeInsets.only(left: 30.0, top: 20.0),
+              ),
+              FlatButton(
+                child: Row(children: <Widget>[
                   Icon(Icons.compare_arrows, size: 40),
                   Padding(
                     padding: const EdgeInsets.only(left: 10.0),

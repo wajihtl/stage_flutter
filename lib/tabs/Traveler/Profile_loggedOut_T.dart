@@ -1,3 +1,6 @@
+import 'package:easyship/screens/LoginPage.dart';
+import 'package:easyship/screens/Search_T.dart';
+import 'package:easyship/screens/SingUpPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -54,7 +57,8 @@ class Profile_loggedOut_T extends StatelessWidget {
                 padding: const EdgeInsets.all(15),
                 color: Colors.purpleAccent[700],
                 textColor: Colors.white,
-                onPressed: () => {},
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Search_T())),
+               // onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage(Theme: Colors.purpleAccent[700],))),
               ),
             ),
             Padding(
@@ -72,7 +76,7 @@ class Profile_loggedOut_T extends StatelessWidget {
                 padding: const EdgeInsets.all(15),
                 color: Colors.purpleAccent[700],
                 textColor: Colors.white,
-                onPressed: () {},
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage(Theme: Colors.purpleAccent[700],))),
               ),
             ),
           ],

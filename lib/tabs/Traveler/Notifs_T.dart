@@ -12,7 +12,7 @@ class _NotifsTab_TState extends State<NotifsTab_T> {
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-        padding: const EdgeInsets.all(16),
+        padding:  EdgeInsets.all(16),
         itemBuilder: (context, i) {
           return NotifsCard_T();
         },

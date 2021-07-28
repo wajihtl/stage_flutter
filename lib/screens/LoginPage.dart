@@ -80,6 +80,11 @@ class _LoginPageState extends State<LoginPage> {
 }
 */
 class LoginPage extends StatefulWidget {
+
+  final Color Theme;
+
+  const LoginPage({Key key, this.Theme}) : super(key: key);
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -118,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
         decoration: InputDecoration(
             prefixIcon: Icon(
               Icons.email,
-              color: Colors.cyanAccent[100],
+              color: widget.Theme,
             ),
             labelText: 'E-mail'),
       ),
@@ -139,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
         decoration: InputDecoration(
           prefixIcon: Icon(
             Icons.lock,
-            color:Colors.cyanAccent[100],
+            color: widget.Theme,
           ),
           labelText: 'Password',
         ),
@@ -170,7 +175,7 @@ class _LoginPageState extends State<LoginPage> {
           margin: EdgeInsets.only(bottom: 20),
           child: RaisedButton(
             elevation: 5.0,
-            color: Colors.cyanAccent[100],
+            color: widget.Theme,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
             ),
@@ -286,12 +291,7 @@ class _LoginPageState extends State<LoginPage> {
         Padding(
           padding: EdgeInsets.only(top: 40),
           child: FlatButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SignUpPage()),
-              );
-            },
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage(Theme: widget.Theme,))),
             child: RichText(
               text: TextSpan(children: [
                 TextSpan(
@@ -305,7 +305,7 @@ class _LoginPageState extends State<LoginPage> {
                 TextSpan(
                   text: 'Sign Up',
                   style: TextStyle(
-                    color: Colors.cyanAccent[100],
+                    color: widget.Theme,
                     fontSize: MediaQuery.of(context).size.height / 40,
                     fontWeight: FontWeight.bold,
                   ),
@@ -331,7 +331,7 @@ class _LoginPageState extends State<LoginPage> {
               width: MediaQuery.of(context).size.width,
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.cyanAccent[100],
+                  color: widget.Theme,
                   borderRadius: BorderRadius.only(
                     bottomLeft: const Radius.circular(70),
                     bottomRight: const Radius.circular(70),

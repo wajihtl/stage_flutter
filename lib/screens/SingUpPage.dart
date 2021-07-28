@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SignUpPage extends StatefulWidget {
+  final Color Theme;
+
+  const SignUpPage({Key key, this.Theme}) : super(key: key);
+
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
@@ -14,6 +18,9 @@ class _SignUpPageState extends State<SignUpPage> {
   StepperType stepperType = StepperType.vertical;
   File _image;
   List<File> _pickedIamages = [];
+  Color _stepper_color1 = Colors.grey;
+
+  Color _stepper_color2 = Colors.grey;
 
   String _dropdownValue = "Country";
   bool agree = false;
@@ -40,7 +47,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.cyanAccent[100],
+        backgroundColor: widget.Theme,
         // automaticallyImplyLeading: false,
         title: Text('Sign Up'),
         centerTitle: true,
@@ -52,9 +59,8 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Container(
                 child: Theme(
                   data: ThemeData(
-                      primaryColor: Colors.cyanAccent[100],
-                      colorScheme:
-                          ColorScheme.light(primary: Colors.cyanAccent[100])),
+                      primaryColor: widget.Theme,
+                      colorScheme: ColorScheme.light(primary: widget.Theme)),
                   child: Stepper(
                     type: stepperType,
                     physics: ScrollPhysics(),
@@ -73,8 +79,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                   child: TextButton(
                                     style: TextButton.styleFrom(
                                         primary: Colors.white,
-                                        backgroundColor: agree ?
-                                            Colors.cyanAccent[100] : Colors.grey[350]),
+                                        backgroundColor: agree
+                                            ? widget.Theme
+                                            : Colors.grey[350]),
                                     onPressed: agree ? onStepContinue : null,
                                     child: Text('NEXT'),
                                   ),
@@ -97,8 +104,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                 TextButton(
                                   style: TextButton.styleFrom(
                                       primary: Colors.white,
-                                      backgroundColor: agree ?
-                                      Colors.cyanAccent[100] : Colors.grey[350]),
+                                      backgroundColor: agree
+                                          ? widget.Theme
+                                          : Colors.grey[350]),
                                   onPressed: agree ? onStepContinue : null,
                                   child: Text('NEXT'),
                                 ),
@@ -115,7 +123,12 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                     steps: <Step>[
                       Step(
-                        title: new Text('Account'),
+                        subtitle: Icon(
+                          Icons.person,
+                          size: 20,
+                          color: _stepper_color1,
+                        ),
+                        title: Text('Account'),
                         content: Column(
                           children: <Widget>[
                             TextFormField(
@@ -193,11 +206,14 @@ class _SignUpPageState extends State<SignUpPage> {
                         state: _currentStep == 0
                             ? StepState.editing
                             : StepState.complete,
-
-
                       ),
                       Step(
-                        title: new Text('Photo'),
+                        subtitle: Icon(
+                          Icons.camera_alt_rounded,
+                          size: 20,
+                          color: _stepper_color2,
+                        ),
+                        title: Text('Photo'),
                         content: Column(
                           children: <Widget>[
                             GestureDetector(
@@ -261,7 +277,7 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.cyanAccent[100],
+        backgroundColor: widget.Theme,
         child: Icon(Icons.crop_rotate),
         onPressed: switchStepsType,
       ),
@@ -280,12 +296,42 @@ class _SignUpPageState extends State<SignUpPage> {
 
   continued() {
     _currentStep < 1 ? setState(() => _currentStep += 1) : null;
+
+    switch (_currentStep) {
+      case 0:
+        setState(() {
+          _stepper_color1 = Colors.grey;
+          _stepper_color2 = Colors.grey;
+        });
+        break;
+      case 1:
+        setState(() {
+          _stepper_color1 = Colors.green;
+          _stepper_color2 = Colors.grey;
+        });
+        break;
+    }
   }
 
   cancel() {
     _currentStep == 0
         ? Navigator.pop(context)
         : setState(() => _currentStep -= 1);
+
+    switch (_currentStep) {
+      case 0:
+        setState(() {
+          _stepper_color1 = Colors.grey;
+          _stepper_color2 = Colors.grey;
+        });
+        break;
+      case 1:
+        setState(() {
+          _stepper_color1 = Colors.green;
+          _stepper_color2 = Colors.grey;
+        });
+        break;
+    }
     // _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
   }
 }

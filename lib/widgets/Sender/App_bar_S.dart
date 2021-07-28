@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget appBar_S(title) {
+Widget appBar_S(title,search) {
   return AppBar(
     elevation: 0.0,
     backgroundColor: Colors.cyanAccent[100],
@@ -11,8 +11,8 @@ Widget appBar_S(title) {
     ),
     actions: <Widget>[
       IconButton(
-        icon: Icon(
-          Icons.search_sharp,
+        icon: Icon( search?
+          Icons.search_sharp : null ,
         ),
         onPressed: () => {},
       ),

@@ -18,6 +18,7 @@ class Navigation_T extends StatefulWidget {
 class _Navigation_TState extends State<Navigation_T> {
   int _selectedIndex = 0;
   String title = 'REQUESTS';
+  bool search=true;
   static List<Widget> _widgetOptions = <Widget>[
     RequestsTab_T(),
     ChatTab_T(),
@@ -37,22 +38,26 @@ class _Navigation_TState extends State<Navigation_T> {
       case 0:
         setState(() {
           title = 'REQUESTS';
+          search=true;
         });
         break;
       case 1:
         setState(() {
           title = 'CHAT';
+          search=false;
         });
         break;
 
       case 2:
         setState(() {
           title = 'NOTIFICATIONS';
+          search=false;
         });
         break;
       case 3:
         setState(() {
           title = 'PROFILE';
+          search=false;
         });
         break;
     }
@@ -62,7 +67,7 @@ class _Navigation_TState extends State<Navigation_T> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: drawer_T(),
-      appBar: appBar_T(title),
+      appBar: appBar_T(title,search),
       body: IndexedStack(
         index: _selectedIndex,
         children: _widgetOptions,

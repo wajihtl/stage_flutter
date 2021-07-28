@@ -12,7 +12,7 @@ class _ChatTab_TState extends State<ChatTab_T> {
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(16),
         itemBuilder: (context, i) {
           return ChatCard_T();
         },

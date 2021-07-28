@@ -20,8 +20,6 @@ class scnd_screen extends StatelessWidget {
             child: Stack(
               alignment: Alignment.centerRight,
               children: [
-
-
                 Container(
                   height: MediaQuery.of(context).size.height * 0.5,
                   decoration: BoxDecoration(
@@ -35,22 +33,32 @@ class scnd_screen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text('TRAVEL    ', style: TextStyle(color: Colors.white,fontSize: 25, fontStyle: FontStyle.italic)),
-                    SizedBox(height: 20.0,),
-                    Text('EARN MONEY    ',  style: TextStyle(color: Colors.white,fontSize: 25, fontStyle: FontStyle.italic)),
+                    Text('TRAVEL    ',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontStyle: FontStyle.italic)),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    Text('EARN MONEY    ',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontStyle: FontStyle.italic)),
                   ],
                 ),
-
               ],
             ),
           ),
           GestureDetector(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Navigation_S(checkType: false,))),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Navigation_S()),
+            ),
             child: Stack(
               alignment: Alignment.centerRight,
               children: [
-
-
                 Container(
                   height: MediaQuery.of(context).size.height * 0.5,
                   decoration: BoxDecoration(
@@ -64,9 +72,19 @@ class scnd_screen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text('SEND    ', style: TextStyle(color: Colors.white,fontSize: 25, fontStyle: FontStyle.italic)),
-                    SizedBox(height: 20.0,),
-                    Text('NEAR YOU    ',  style: TextStyle(color: Colors.white,fontSize: 25, fontStyle: FontStyle.italic)),
+                    Text('SEND    ',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontStyle: FontStyle.italic)),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    Text('NEAR YOU    ',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontStyle: FontStyle.italic)),
                   ],
                 ),
               ],
