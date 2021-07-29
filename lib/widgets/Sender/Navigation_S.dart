@@ -68,10 +68,7 @@ class _Navigation_SState extends State<Navigation_S> {
     return Scaffold(
       drawer: drawer_S(),
       appBar: appBar_S(context, title, search),
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _widgetOptions,
-      ),
+      body: _widgetOptions[_selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(
         height: 60,
         color: Colors.cyanAccent[100],

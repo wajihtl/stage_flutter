@@ -23,8 +23,8 @@ class _Navigation_TState extends State<Navigation_T> {
     RequestsTab_T(),
     ChatTab_T(),
     NotifsTab_T(),
-    Profile_loggedOut_T()
-    //ProfileTab_T(),
+    Profile_loggedOut_T(),
+   // ProfileTab_T(),
   ];
 
   void _onItemTapped(int index) {
@@ -68,20 +68,15 @@ class _Navigation_TState extends State<Navigation_T> {
     return Scaffold(
       drawer: drawer_T(),
       appBar: appBar_T(context, title, search),
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _widgetOptions,
-      ),
+      body: _widgetOptions[_selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(
         height: 60,
         color: Colors.purpleAccent[700],
         backgroundColor: Colors.transparent,
         items: <Widget>[
           Icon(Icons.article_outlined, color: Colors.white, size: 30),
-          Icon(Icons.chat_bubble_outline_outlined,
-              color: Colors.white, size: 30,),
-          Icon(Icons.notifications_none_outlined,
-              color: Colors.white, size: 30),
+          Icon(Icons.chat_bubble_outline_outlined, color: Colors.white, size: 30,),
+          Icon(Icons.notifications_none_outlined, color: Colors.white, size: 30),
           Icon(Icons.person_outline_outlined, color: Colors.white, size: 30),
         ],
         onTap: (index) {

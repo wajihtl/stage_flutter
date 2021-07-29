@@ -11,11 +11,22 @@ class _ChatTab_TState extends State<ChatTab_T> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: ListView.builder(
-        padding: EdgeInsets.all(16),
-        itemBuilder: (context, i) {
-          return ChatCard_T();
-        },
+      child: Column(
+        children: [
+          Container(
+            height: 50,
+            color: Colors.black,
+          ),
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              padding: EdgeInsets.all(16),
+              itemBuilder: (context, i) {
+                return ChatCard_T();
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
