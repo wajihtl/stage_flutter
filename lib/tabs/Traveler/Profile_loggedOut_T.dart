@@ -57,8 +57,7 @@ class Profile_loggedOut_T extends StatelessWidget {
                 padding: const EdgeInsets.all(15),
                 color: Colors.purpleAccent[700],
                 textColor: Colors.white,
-                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Search_T())),
-               // onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage(Theme: Colors.purpleAccent[700],))),
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage(Theme: Colors.purpleAccent[700],))),
               ),
             ),
             Padding(

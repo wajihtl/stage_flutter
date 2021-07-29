@@ -67,7 +67,7 @@ class _Navigation_TState extends State<Navigation_T> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: drawer_T(),
-      appBar: appBar_T(title,search),
+      appBar: appBar_T(context, title, search),
       body: IndexedStack(
         index: _selectedIndex,
         children: _widgetOptions,

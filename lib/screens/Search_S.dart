@@ -1,15 +1,15 @@
-import 'package:easyship/widgets/Traveler/App_bar_T.dart';
+import 'package:easyship/widgets/Sender/App_bar_S.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Search_T extends StatefulWidget {
-  const Search_T({Key key}) : super(key: key);
+class Search_S extends StatefulWidget {
+  const Search_S({Key key}) : super(key: key);
 
   @override
-  _Search_TState createState() => _Search_TState();
+  _Search_SState createState() => _Search_SState();
 }
 
-class _Search_TState extends State<Search_T> with SingleTickerProviderStateMixin {
+class _Search_SState extends State<Search_S> with SingleTickerProviderStateMixin {
   String _country_D = "Country";
   String _city_D = "City";
   String _country_A = "Country";
@@ -27,7 +27,7 @@ class _Search_TState extends State<Search_T> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar_T(context, "SEARCH REQUESTS", false),
+      appBar: appBar_S(context, "SEARCH OFFERS", false),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 20),
@@ -38,7 +38,7 @@ class _Search_TState extends State<Search_T> with SingleTickerProviderStateMixin
                 child: Text(
                   "Departure city",
                   style: TextStyle(
-                      color: Colors.purpleAccent[700],
+                      color: Colors.cyanAccent[100],
                       fontWeight: FontWeight.bold,
                       fontSize: 20.0),
                 ),
@@ -88,7 +88,7 @@ class _Search_TState extends State<Search_T> with SingleTickerProviderStateMixin
                 child: Text(
                   "Arrival city",
                   style: TextStyle(
-                      color: Colors.purpleAccent[700],
+                      color: Colors.cyanAccent[100],
                       fontWeight: FontWeight.bold,
                       fontSize: 20.0),
                 ),
@@ -138,7 +138,7 @@ class _Search_TState extends State<Search_T> with SingleTickerProviderStateMixin
                 child: Text(
                   "Maximum date",
                   style: TextStyle(
-                      color: Colors.purpleAccent[700],
+                      color: Colors.cyanAccent[100],
                       fontWeight: FontWeight.bold,
                       fontSize: 20.0),
                 ),
@@ -151,18 +151,18 @@ class _Search_TState extends State<Search_T> with SingleTickerProviderStateMixin
               ElevatedButton(
 
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.purpleAccent[700],
+                    primary: Colors.cyanAccent[100],
                     textStyle: TextStyle(fontWeight: FontWeight.bold)),
                 child: Text('Pick a date'),
                 onPressed: () {
 
                   showDatePicker(
-                  builder: (BuildContext context, Widget child) {
-                    return Theme(
-                      data: ThemeData.dark(), // This will change to light theme.
-                      child: child,
-                    );//Background color
-                  },
+                    builder: (BuildContext context, Widget child) {
+                      return Theme(
+                        data: ThemeData.dark(), // This will change to light theme.
+                        child: child,
+                      );//Background color
+                    },
                     context: context,
                     initialDate: _dateTime == null ? DateTime.now() : _dateTime,
                     firstDate: DateTime(2001),
@@ -180,7 +180,7 @@ class _Search_TState extends State<Search_T> with SingleTickerProviderStateMixin
                 child: Text(
                   "Preferred mean of transport",
                   style: TextStyle(
-                      color: Colors.purpleAccent[700],
+                      color: Colors.cyanAccent[100],
                       fontWeight: FontWeight.bold,
                       fontSize: 20.0),
                 ),
@@ -193,8 +193,8 @@ class _Search_TState extends State<Search_T> with SingleTickerProviderStateMixin
                     print('get index : $index');
                   },
                   controller: tabController,
-                  indicatorColor: Colors.purple,
-                  labelColor: Colors.purple,
+                  indicatorColor: Colors.cyanAccent[100],
+                  labelColor: Colors.cyanAccent[100],
                   unselectedLabelColor: Colors.grey,
                   tabs: [
                     Icon(Icons.airplanemode_on),
@@ -204,7 +204,7 @@ class _Search_TState extends State<Search_T> with SingleTickerProviderStateMixin
                   ],
                 ),
               ),
-          /*    Row(
+              /*    Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Icon(Icons.airplanemode_on),
@@ -228,7 +228,7 @@ class _Search_TState extends State<Search_T> with SingleTickerProviderStateMixin
                     borderRadius: BorderRadius.circular(5),
                   ),
                   padding: const EdgeInsets.symmetric(horizontal: 65 ,vertical: 10.0),
-                  color: Colors.purpleAccent[700],
+                  color: Colors.cyanAccent[100],
                   textColor: Colors.white, onPressed: () {  },
 
                 ),
@@ -239,7 +239,6 @@ class _Search_TState extends State<Search_T> with SingleTickerProviderStateMixin
       ),
     );
   }
-
 }
 
 

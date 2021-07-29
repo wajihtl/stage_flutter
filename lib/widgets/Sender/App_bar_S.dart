@@ -1,4 +1,4 @@
-import 'package:easyship/screens/Search_T.dart';
+import 'package:easyship/screens/Search_S.dart';
 import 'package:flutter/material.dart';
 
 Widget appBar_S(context, title, search) {
@@ -14,7 +14,7 @@ Widget appBar_S(context, title, search) {
     actions: <Widget>[
       IconButton(
         icon: Icon(search? Icons.search_sharp : null),
-        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Search_T()),),
+        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Search_S()),),
       ),
     ],
   );
