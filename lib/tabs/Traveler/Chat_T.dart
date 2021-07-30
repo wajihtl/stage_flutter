@@ -14,8 +14,18 @@ class _ChatTab_TState extends State<ChatTab_T> {
       child: Column(
         children: [
           Container(
-            height: 50,
-            color: Colors.black,
+            //color: Colors.amber,
+            height: 55,
+            padding: EdgeInsets.only(left: 15,right: 15),
+            child: TextField(
+              keyboardType: TextInputType.text,
+              onChanged: (String str){
+
+              },
+              decoration: InputDecoration(
+                  hintText: "Search for..."
+              ),
+            ),
           ),
           Expanded(
             child: ListView.builder(

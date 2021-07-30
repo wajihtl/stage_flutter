@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'Requests_T.dart';
-
-class Add_T extends StatefulWidget {
+class Add_S extends StatefulWidget {
   @override
-  _Add_TState createState() => _Add_TState();
+  _Add_SState createState() => _Add_SState();
 }
 
-class _Add_TState extends State<Add_T>  with SingleTickerProviderStateMixin {
+class _Add_SState extends State<Add_S>  with SingleTickerProviderStateMixin {
 
   DateTime _Traveldate;
   DateTime _Arrivalldate;
@@ -53,9 +51,9 @@ class _Add_TState extends State<Add_T>  with SingleTickerProviderStateMixin {
             Step(
               subtitle: _currentStep == 0
                   ? Icon(
-                      Icons.airplanemode_on,
-                      color: Colors.purpleAccent[700],
-                    )
+                Icons.airplanemode_on,
+                color: Colors.purpleAccent[700],
+              )
                   : null,
               title: Text(
                 "TRAVEL",
@@ -72,12 +70,12 @@ class _Add_TState extends State<Add_T>  with SingleTickerProviderStateMixin {
                       Expanded(
                           child: Center(
                               child: Text(
-                        "Departure",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.purpleAccent[700],
-                        ),
-                      ))),
+                                "Departure",
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  color: Colors.purpleAccent[700],
+                                ),
+                              ))),
                     ],
                   ),
                   Divider(),
@@ -134,12 +132,12 @@ class _Add_TState extends State<Add_T>  with SingleTickerProviderStateMixin {
                       Expanded(
                           child: Center(
                               child: Text(
-                        "Arrival",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.purpleAccent[700],
-                        ),
-                      ))),
+                                "Arrival",
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  color: Colors.purpleAccent[700],
+                                ),
+                              ))),
                     ],
                   ),
                   Divider(),
@@ -196,12 +194,12 @@ class _Add_TState extends State<Add_T>  with SingleTickerProviderStateMixin {
                       Expanded(
                           child: Center(
                               child: Text(
-                        "Date",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.purpleAccent[700],
-                        ),
-                      ))),
+                                "Date",
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  color: Colors.purpleAccent[700],
+                                ),
+                              ))),
                     ],
                   ),
                   Divider(),
@@ -381,14 +379,14 @@ class _Add_TState extends State<Add_T>  with SingleTickerProviderStateMixin {
               ),
               isActive: _currentStep >= 0,
               state:
-                  _currentStep >= 0 ? StepState.complete : StepState.disabled,
+              _currentStep >= 0 ? StepState.complete : StepState.disabled,
             ),
             Step(
               subtitle: _currentStep == 1
                   ? Icon(
-                      Icons.add_box,
-                      color: Colors.purpleAccent[700],
-                    )
+                Icons.add_box,
+                color: Colors.purpleAccent[700],
+              )
                   : null,
               title: Text(
                 "PICKUP",
@@ -405,12 +403,12 @@ class _Add_TState extends State<Add_T>  with SingleTickerProviderStateMixin {
                       Expanded(
                           child: Center(
                               child: Text(
-                        "PICKUP",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.purpleAccent[700],
-                        ),
-                      ))),
+                                "PICKUP",
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  color: Colors.purpleAccent[700],
+                                ),
+                              ))),
                     ],
                   ),
                   Divider(),
@@ -447,7 +445,7 @@ class _Add_TState extends State<Add_T>  with SingleTickerProviderStateMixin {
               ),
               isActive: _currentStep >= 0,
               state:
-                  _currentStep >= 1 ? StepState.complete : StepState.disabled,
+              _currentStep >= 1 ? StepState.complete : StepState.disabled,
 
             ),
 
@@ -470,12 +468,12 @@ class _Add_TState extends State<Add_T>  with SingleTickerProviderStateMixin {
                       Expanded(
                           child: Center(
                               child: Text(
-                        "DELIVERY",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.purpleAccent[700],
-                        ),
-                      ))),
+                                "DELIVERY",
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  color: Colors.purpleAccent[700],
+                                ),
+                              ))),
                     ],
                   ),
                   Divider(),
@@ -507,7 +505,7 @@ class _Add_TState extends State<Add_T>  with SingleTickerProviderStateMixin {
               ),
               isActive: _currentStep >= 0,
               state:
-                  _currentStep >= 2 ? StepState.complete : StepState.disabled,
+              _currentStep >= 2 ? StepState.complete : StepState.disabled,
             ),
             Step(
               subtitle: _currentStep == 3
@@ -528,13 +526,13 @@ class _Add_TState extends State<Add_T>  with SingleTickerProviderStateMixin {
                       Expanded(
                           child: Center(
                               child: Text(
-                        "CONFIRM",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.purpleAccent[700],
-                        ),
+                                "CONFIRM",
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  color: Colors.purpleAccent[700],
+                                ),
 
-                      ))),
+                              ))),
                     ],
                   ),
                   Divider(),
@@ -542,7 +540,7 @@ class _Add_TState extends State<Add_T>  with SingleTickerProviderStateMixin {
 
                   Card(
                       elevation: 2.0,
-                     // margin: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
+                      // margin: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Column(
@@ -605,7 +603,7 @@ class _Add_TState extends State<Add_T>  with SingleTickerProviderStateMixin {
               ),
               isActive: _currentStep >= 0,
               state:
-                  _currentStep >= 3 ? StepState.complete : StepState.disabled,
+              _currentStep >= 3 ? StepState.complete : StepState.disabled,
             ),
           ],
         ),

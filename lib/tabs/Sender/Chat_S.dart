@@ -11,11 +11,31 @@ class _ChatTab_SState extends State<ChatTab_S> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: ListView.builder(
-        padding: const EdgeInsets.all(16),
-        itemBuilder: (context, i) {
-          return ChatCard_S();
-        },
+      child: Column(
+        children: [
+          Container(
+            //color: Colors.amber,
+            height: 55,
+            padding: EdgeInsets.only(left: 15,right: 15),
+            child: TextField(
+              keyboardType: TextInputType.text,
+              onChanged: (String str){
+              },
+              decoration: InputDecoration(
+                  hintText: "Search for..."
+              ),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              padding: EdgeInsets.all(16),
+              itemBuilder: (context, i) {
+                return ChatCard_S();
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

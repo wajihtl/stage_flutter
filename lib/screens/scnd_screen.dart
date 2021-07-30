@@ -12,7 +12,7 @@ class scnd_screen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          GestureDetector(
+          InkWell(
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => Navigation_T()),
@@ -51,7 +51,7 @@ class scnd_screen extends StatelessWidget {
               ],
             ),
           ),
-          GestureDetector(
+          InkWell(
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Navigation_S()),),
             child: Stack(
               alignment: Alignment.centerRight,
