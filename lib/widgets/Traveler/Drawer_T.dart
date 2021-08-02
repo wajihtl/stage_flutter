@@ -1,4 +1,5 @@
 import 'package:easyship/screens/scnd_screen.dart';
+import 'package:easyship/widgets/Traveler/Navigation_T.dart';
 import 'package:flutter/material.dart';
 
 class drawer_T extends StatelessWidget {
@@ -38,7 +39,8 @@ class drawer_T extends StatelessWidget {
                     child: Text('Home'),
                   ),
                 ]),
-                onPressed: () => print('test'),
+                onPressed: () => Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => Navigation_T())),
                 padding: EdgeInsets.only(left: 30.0, top: 20.0),
               ),
               FlatButton(

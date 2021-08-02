@@ -9,84 +9,55 @@ class scnd_screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          InkWell(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Navigation_T()),
-            ),
-            child: Stack(
-              alignment: Alignment.centerRight,
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.5,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/transporter.png'),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text('TRAVEL    ',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontStyle: FontStyle.italic)),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Text('EARN MONEY    ',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontStyle: FontStyle.italic)),
-                  ],
-                ),
-              ],
+          Container(
+            height: MediaQuery.of(context).size.height * 0.7,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/easyship.png'),
+                fit: BoxFit.fill,
+              ),
             ),
           ),
-          InkWell(
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Navigation_S()),),
-            child: Stack(
-              alignment: Alignment.centerRight,
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.5,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/customer.png'),
-                      fit: BoxFit.fill,
-                    ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              FlatButton(
+                child: Text(
+                  'DÉMO',
+                  style: TextStyle(
+                    fontSize: 18,
                   ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text('SEND    ',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontStyle: FontStyle.italic)),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Text('NEAR YOU    ',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontStyle: FontStyle.italic)),
-                  ],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
                 ),
-              ],
-            ),
-          ),
+                padding: const EdgeInsets.all(15),
+                color: Theme.of(context).primaryColor,
+                textColor: Colors.white,
+                onPressed: () {
+
+                },
+              ),
+              FlatButton(
+                child: Text(
+                  'DÉMO',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                padding: const EdgeInsets.all(15),
+                color: Theme.of(context).primaryColor,
+                textColor: Colors.white,
+                onPressed: () {
+
+                },
+              ),
+            ],
+          )
         ],
       ),
     );

@@ -27,7 +27,7 @@ class _Search_SState extends State<Search_S> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar_S(context, "SEARCH OFFERS", false),
+      appBar: appBar_S(context, "SEARCH FLIGHTS", false),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 20),
@@ -219,7 +219,7 @@ class _Search_SState extends State<Search_S> with SingleTickerProviderStateMixin
                 padding: const EdgeInsets.only(top:15.0, bottom: 15.0),
                 child: FlatButton(
                   child: Text(
-                    'CONTINUE',
+                    'SEARCH',
                     style: TextStyle(
                       fontSize: 18,
                     ),

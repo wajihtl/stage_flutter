@@ -1,7 +1,9 @@
 import 'package:easyship/tabs/Sender/Chat_S.dart';
+import 'package:easyship/widgets/Sender/MessageChat.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'EditProfile_S.dart';
 import 'SingUpPage.dart';
 
 /*
@@ -291,7 +293,7 @@ class _LoginPageState extends State<LoginPage> {
         Padding(
           padding: EdgeInsets.only(top: 40),
           child: FlatButton(
-            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage(Theme: widget.Theme,))),
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage())),
             child: RichText(
               text: TextSpan(children: [
                 TextSpan(

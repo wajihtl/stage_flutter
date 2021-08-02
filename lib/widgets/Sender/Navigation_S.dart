@@ -23,8 +23,8 @@ class _Navigation_SState extends State<Navigation_S> {
     OffersTab_S(),
     ChatTab_S(),
     NotifsTab_S(),
-    Profile_loggedOut_S()
-    // ProfileTab_S(),
+    //Profile_loggedOut_S()
+     ProfileTab_S(),
   ];
 
   void _onItemTapped(int index) {

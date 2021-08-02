@@ -20,14 +20,14 @@ class _Search_TState extends State<Search_T> with SingleTickerProviderStateMixin
   TabController tabController;
 
   void initState() {
-    tabController = TabController(length: 4, vsync: this, initialIndex: 0);
+    tabController = TabController(length: 3, vsync: this, initialIndex: 0);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar_T(context, "SEARCH REQUESTS", false),
+      appBar: appBar_T(context, "SEARCH PACKAGES", false),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 20),
@@ -178,7 +178,7 @@ class _Search_TState extends State<Search_T> with SingleTickerProviderStateMixin
               Padding(
                 padding: EdgeInsets.only(top:20.0, bottom: 12.0),
                 child: Text(
-                  "Preferred mean of transport",
+                  "Preferred Package type ",
                   style: TextStyle(
                       color: Colors.purpleAccent[700],
                       fontWeight: FontWeight.bold,
@@ -197,10 +197,27 @@ class _Search_TState extends State<Search_T> with SingleTickerProviderStateMixin
                   labelColor: Colors.purple,
                   unselectedLabelColor: Colors.grey,
                   tabs: [
-                    Icon(Icons.airplanemode_on),
-                    Icon(Icons.car_repair),
-                    Icon(Icons.train_rounded),
-                    Icon(Icons.directions_boat_sharp),
+                    Column(
+                      children: [
+                        Icon(Icons.forward_to_inbox),
+                        Text("Documents"),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Icon(Icons.work_rounded),
+                        Text("Box"),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Icon(Icons.book),
+                        Text("Book"),
+                      ],
+                    ),
+
+
+
                   ],
                 ),
               ),
@@ -219,7 +236,7 @@ class _Search_TState extends State<Search_T> with SingleTickerProviderStateMixin
                 padding: const EdgeInsets.only(top:15.0, bottom: 15.0),
                 child: FlatButton(
                   child: Text(
-                    'CONTINUE',
+                    'SEARCH',
                     style: TextStyle(
                       fontSize: 18,
                     ),

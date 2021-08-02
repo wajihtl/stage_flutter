@@ -1,45 +1,64 @@
+import 'dart:io';
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Add_S extends StatefulWidget {
   @override
   _Add_SState createState() => _Add_SState();
 }
 
-class _Add_SState extends State<Add_S>  with SingleTickerProviderStateMixin {
-
+class _Add_SState extends State<Add_S> with SingleTickerProviderStateMixin {
   DateTime _Traveldate;
   DateTime _Arrivalldate;
   DateTime _Expirationdate;
 
-
   int _currentStep = 0;
   StepperType stepperType = StepperType.vertical;
-
 
   String Departure_country = "Select Country";
   String Departure_city = "Select City";
   String Arrival_country = "Select Country";
   String Arrival_city = "Select City";
   String Relay_points = "Pick up point";
-  String Delivery_points = "Delivery point";
-
+  String Package = "Type";
 
   TabController tabControllerr;
+
+  File _image;
+  List<File> _pickedIamages = [];
+  final picker = ImagePicker();
+
+
+  Future getImage(ImageSource source) async {
+    final pickedFile = await picker.getImage(source: source);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+
+        setState(() {
+          _pickedIamages.add(File(pickedFile.path));
+        });
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
 
   void initState() {
     tabControllerr = TabController(length: 4, initialIndex: 0, vsync: this);
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Theme(
         data: ThemeData(
-            primaryColor: Colors.purpleAccent[700],
+            primaryColor: Colors.cyanAccent[100],
             colorScheme: ColorScheme.light(
-              primary: Colors.purpleAccent[700],
+              primary: Colors.cyanAccent[100],
             )),
         child: Stepper(
           type: stepperType,
@@ -51,15 +70,15 @@ class _Add_SState extends State<Add_S>  with SingleTickerProviderStateMixin {
             Step(
               subtitle: _currentStep == 0
                   ? Icon(
-                Icons.airplanemode_on,
-                color: Colors.purpleAccent[700],
-              )
+                      Icons.airplanemode_on,
+                      color: Colors.cyanAccent[100],
+                    )
                   : null,
               title: Text(
                 "TRAVEL",
                 style: TextStyle(
                   fontSize: 18.0,
-                  color: Colors.purpleAccent[700],
+                  color: Colors.cyanAccent[100],
                 ),
               ),
               content: Column(
@@ -70,12 +89,12 @@ class _Add_SState extends State<Add_S>  with SingleTickerProviderStateMixin {
                       Expanded(
                           child: Center(
                               child: Text(
-                                "Departure",
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  color: Colors.purpleAccent[700],
-                                ),
-                              ))),
+                        "Departure",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.cyanAccent[100],
+                        ),
+                      ))),
                     ],
                   ),
                   Divider(),
@@ -132,12 +151,12 @@ class _Add_SState extends State<Add_S>  with SingleTickerProviderStateMixin {
                       Expanded(
                           child: Center(
                               child: Text(
-                                "Arrival",
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  color: Colors.purpleAccent[700],
-                                ),
-                              ))),
+                        "Arrival",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.cyanAccent[100],
+                        ),
+                      ))),
                     ],
                   ),
                   Divider(),
@@ -194,106 +213,12 @@ class _Add_SState extends State<Add_S>  with SingleTickerProviderStateMixin {
                       Expanded(
                           child: Center(
                               child: Text(
-                                "Date",
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  color: Colors.purpleAccent[700],
-                                ),
-                              ))),
-                    ],
-                  ),
-                  Divider(),
-                  Divider(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(_Traveldate == null
-                          ? 'Travel date'
-                          : '${_Traveldate.day.toString()}/${_Traveldate.month.toString()}/${_Traveldate.year.toString()}'),
-                      Icon(Icons.calendar_today_rounded),
-                      Text(_Arrivalldate == null
-                          ? 'Arrival date'
-                          : '${_Arrivalldate.day.toString()}/${_Arrivalldate.month.toString()}/${_Arrivalldate.year.toString()}'),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary: Colors.purpleAccent[700],
-                            textStyle: TextStyle(fontWeight: FontWeight.bold)),
-                        child: Text('Travel Date'),
-                        onPressed: () {
-                          showDatePicker(
-                            builder: (BuildContext context, Widget child) {
-                              return Theme(
-                                data: ThemeData.dark(),
-                                // This will change to light theme.
-                                child: child,
-                              ); //Background color
-                            },
-                            context: context,
-                            initialDate: _Traveldate == null
-                                ? DateTime.now()
-                                : _Traveldate,
-                            firstDate: DateTime(2001),
-                            lastDate: DateTime(2030),
-                          ).then((date) {
-                            setState(() {
-                              _Traveldate = date;
-                            });
-                          });
-                        },
-                      ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary: Colors.purpleAccent[700],
-                            textStyle: TextStyle(fontWeight: FontWeight.bold)),
-                        child: Text('Arrival Date'),
-                        onPressed: () {
-                          showDatePicker(
-                            builder: (BuildContext context, Widget child) {
-                              return Theme(
-                                data: ThemeData.dark(),
-                                // This will change to light theme.
-                                child: child,
-                              ); //Background color
-                            },
-                            context: context,
-                            initialDate: _Arrivalldate == null
-                                ? DateTime.now()
-                                : _Arrivalldate,
-                            firstDate: DateTime(2001),
-                            lastDate: DateTime(2030),
-                          ).then((date) {
-                            setState(() {
-                              _Arrivalldate = date;
-                            });
-                          });
-                        },
-                      ),
-
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Divider(),
-                  ),
-                  Divider(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                          child: Center(
-                              child: Text(
-                                "Offer Expiration date",
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  color: Colors.purpleAccent[700],
-                                ),
-                              ))),
+                        "Request Expiration Date",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.cyanAccent[100],
+                        ),
+                      ))),
                     ],
                   ),
                   Divider(),
@@ -304,7 +229,7 @@ class _Add_SState extends State<Add_S>  with SingleTickerProviderStateMixin {
                       : '${_Expirationdate.day.toString()}/${_Expirationdate.month.toString()}/${_Expirationdate.year.toString()}'),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        primary: Colors.purpleAccent[700],
+                        primary: Colors.cyanAccent[100],
                         textStyle: TextStyle(fontWeight: FontWeight.bold)),
                     child: Text('Pick Date'),
                     onPressed: () {
@@ -334,65 +259,27 @@ class _Add_SState extends State<Add_S>  with SingleTickerProviderStateMixin {
                     child: Divider(),
                   ),
                   Divider(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                          child: Center(
-                              child: Text(
-                                "Transport",
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  color: Colors.purpleAccent[700],
-                                ),
-                              ))),
-                    ],
-                  ),
-                  Divider(),
-                  Divider(),
-                  Icon(Icons.emoji_transportation_rounded),
-
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Container(
-                      margin: EdgeInsets.symmetric(vertical: 5),
-                      child: TabBar(
-                        onTap: (index) {
-                          print('get index : $index');
-                        },
-                        controller: tabControllerr,
-                        indicatorColor: Colors.purpleAccent[700],
-                        labelColor:Colors.purpleAccent[700],
-                        unselectedLabelColor: Colors.grey,
-                        tabs: [
-                          Icon(Icons.airplanemode_on),
-                          Icon(Icons.car_repair),
-                          Icon(Icons.train_rounded),
-                          Icon(Icons.directions_boat_sharp),
-                        ],
-                      ),
-                    ),
-
-                  ),
-                  SizedBox(height: 15.0,)
+                  SizedBox(
+                    height: 15.0,
+                  )
                 ],
               ),
               isActive: _currentStep >= 0,
               state:
-              _currentStep >= 0 ? StepState.complete : StepState.disabled,
+                  _currentStep >= 0 ? StepState.complete : StepState.disabled,
             ),
             Step(
               subtitle: _currentStep == 1
                   ? Icon(
-                Icons.add_box,
-                color: Colors.purpleAccent[700],
-              )
+                      Icons.forward_to_inbox,
+                      color: Colors.cyanAccent[100],
+                    )
                   : null,
               title: Text(
-                "PICKUP",
+                "PACKAGE",
                 style: TextStyle(
                   fontSize: 18.0,
-                  color: Colors.purpleAccent[700],
+                  color: Colors.cyanAccent[100],
                 ),
               ),
               content: Column(
@@ -403,12 +290,12 @@ class _Add_SState extends State<Add_S>  with SingleTickerProviderStateMixin {
                       Expanded(
                           child: Center(
                               child: Text(
-                                "PICKUP",
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  color: Colors.purpleAccent[700],
-                                ),
-                              ))),
+                        "PACKAGE",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.cyanAccent[100],
+                        ),
+                      ))),
                     ],
                   ),
                   Divider(),
@@ -419,9 +306,9 @@ class _Add_SState extends State<Add_S>  with SingleTickerProviderStateMixin {
                     ),
                     isExpanded: true,
                     hint: TextFormField(
-                      decoration: InputDecoration(labelText: Relay_points),
+                      decoration: InputDecoration(labelText: Package),
                     ),
-                    items: <String>['Paris', 'Tunis'].map((String value) {
+                    items: <String>['letter', 'box'].map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(value),
@@ -429,93 +316,97 @@ class _Add_SState extends State<Add_S>  with SingleTickerProviderStateMixin {
                     }).toList(),
                     onChanged: (String newValue) {
                       setState(() {
-                        Relay_points = newValue;
+                        Package = newValue;
                       });
                     },
                   ),
                   TextFormField(
-                    decoration: InputDecoration(labelText: 'Add description'),
+                    decoration: InputDecoration(labelText: 'Weight (kg)'),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Divider(),
+                  SizedBox(height: 10.0),
+                  Divider(),
+                  Text("Dimensions (m)"),
+                  Divider(),
+                  TextFormField(
+                    decoration: InputDecoration(labelText: 'width'),
                   ),
-
+                  TextFormField(
+                    decoration: InputDecoration(labelText: 'Height'),
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(labelText: 'Length'),
+                  ),
+                  SizedBox(height: 10.0),
+                  Divider(),
+                  Text("Add image"),
+                  Divider(),
+                  SizedBox(height: 10.0),
+                  InkWell(
+                    child: Column(
+                      children: [
+                        Icon(Icons.add_a_photo_outlined),
+                        Container(
+                          margin: EdgeInsets.only(top: 20.0, bottom: 25.0),
+                          width: 200.0,
+                          height: 200.0,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: _image != null
+                                    ? FileImage(_image)
+                                    : AssetImage('assets/images/avatar.png'),
+                                fit: BoxFit.cover),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(0.0)),
+                          ),
+                        ),
+                      ],
+                    ),
+                    onTap: () {
+                      showModalBottomSheet(
+                          context: context,
+                          builder: (BuildContext bc) {
+                            return Container(
+                              child: new Wrap(
+                                children: <Widget>[
+                                  new ListTile(
+                                      leading: new Icon(Icons.camera),
+                                      title: new Text('Camera'),
+                                      onTap: () {
+                                        getImage(ImageSource.camera);
+                                        Navigator.pop(context);
+                                      }),
+                                  new ListTile(
+                                    leading: new Icon(Icons.image),
+                                    title: new Text('Gallery'),
+                                    onTap: () {
+                                      getImage(ImageSource.gallery);
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ],
+                              ),
+                            );
+                          });
+                    },
+                  )
                 ],
               ),
-              isActive: _currentStep >= 0,
+              isActive: _currentStep >= 1,
               state:
-              _currentStep >= 1 ? StepState.complete : StepState.disabled,
-
+                  _currentStep >= 1 ? StepState.complete : StepState.disabled,
             ),
-
             Step(
               subtitle: _currentStep == 2
-                  ? Icon(Icons.check_box, color: Colors.purpleAccent[700])
-                  : null,
-              title: Text(
-                "DELIVERY",
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.purpleAccent[700],
-                ),
-              ),
-              content: Column(
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                          child: Center(
-                              child: Text(
-                                "DELIVERY",
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  color: Colors.purpleAccent[700],
-                                ),
-                              ))),
-                    ],
-                  ),
-                  Divider(),
-                  Divider(),
-                  DropdownButton<String>(
-                    underline: Divider(
-                      color: Colors.white,
-                    ),
-                    isExpanded: true,
-                    hint: TextFormField(
-                      decoration: InputDecoration(labelText: Delivery_points),
-                    ),
-                    items: <String>['Paris', 'Tunis'].map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
-                    onChanged: (String newValue) {
-                      setState(() {
-                        Delivery_points = newValue;
-                      });
-                    },
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(labelText: 'Add description'),
-                  ),
-                ],
-              ),
-              isActive: _currentStep >= 0,
-              state:
-              _currentStep >= 2 ? StepState.complete : StepState.disabled,
-            ),
-            Step(
-              subtitle: _currentStep == 3
-                  ? Icon(Icons.done_all, color: Colors.purpleAccent[700])
+                  ? Icon(
+                      Icons.done_all,
+                      color: Colors.cyanAccent[100],
+                    )
                   : null,
               title: Text(
                 "CONFIRM",
                 style: TextStyle(
                   fontSize: 18.0,
-                  color: Colors.purpleAccent[700],
+                  color: Colors.cyanAccent[100],
                 ),
               ),
               content: Column(
@@ -526,18 +417,16 @@ class _Add_SState extends State<Add_S>  with SingleTickerProviderStateMixin {
                       Expanded(
                           child: Center(
                               child: Text(
-                                "CONFIRM",
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  color: Colors.purpleAccent[700],
-                                ),
-
-                              ))),
+                        "CONFIRM",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.cyanAccent[100],
+                        ),
+                      ))),
                     ],
                   ),
                   Divider(),
                   Divider(),
-
                   Card(
                       elevation: 2.0,
                       // margin: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
@@ -548,24 +437,29 @@ class _Add_SState extends State<Add_S>  with SingleTickerProviderStateMixin {
                           children: <Widget>[
                             SizedBox(
                               height: 50.0,
-                              child:  Container(
-                                color: Colors.purpleAccent[700],
+                              child: Container(
+                                color: Colors.cyanAccent[100],
                                 child: Center(
                                   child: Text(
-                                    "Travel information",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+                                    "Request information",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top:8.0),
+                              padding: EdgeInsets.only(top: 8.0),
                               child: Center(
                                 child: Text(
                                   "Added on 25/07/2021 \n Expires on 27/07/2021",
                                 ),
                               ),
                             ),
-                            Divider(color: Colors.grey,),
+                            Divider(
+                              color: Colors.grey,
+                            ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -574,36 +468,62 @@ class _Add_SState extends State<Add_S>  with SingleTickerProviderStateMixin {
                                 Text("To: Paris"),
                               ],
                             ),
-                            Divider(color: Colors.grey,),
+                            Divider(
+                              color: Colors.grey,
+                            ),
+                            Text("Package details"),
+                            SizedBox(height: 12.0),
+
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                            //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text("       Departure:                      "),
-                                Text("Arrival:"),
+                                Text("       Width: "),
+                                Text("0.5 m"),
                               ],
                             ),
+                            SizedBox(height: 5.0),
+
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text("27/08/2021    "),
-                                Icon(Icons.arrow_forward),
-                                Text("28/08/2021"),
+                                Text("       Height: "),
+                                Text("1.2 m"),
                               ],
                             ),
-                            Divider(color: Colors.grey,),
-                            Text("Traveling by"),
-
-                            Icon(Icons.airplanemode_on,size: 30.0,)
-
+                            SizedBox(height: 5.0),
+                            Row(
+                              //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text("       Length: "),
+                                Text("0.5 m"),
+                              ],
+                            ),
+                            Divider(
+                              color: Colors.grey,
+                            ),
+                            Text("Image"),
+                            Container(
+                              margin: EdgeInsets.only(top: 20.0, bottom: 25.0),
+                              width: 200.0,
+                              height: 200.0,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: _image != null
+                                        ? FileImage(_image)
+                                        : AssetImage('assets/images/avatar.png'),
+                                    fit: BoxFit.cover),
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(0.0)),
+                              ),
+                            ),
                           ],
                         ),
                       ))
-
                 ],
               ),
-              isActive: _currentStep >= 0,
+              isActive: _currentStep >= 2,
               state:
-              _currentStep >= 3 ? StepState.complete : StepState.disabled,
+                  _currentStep >= 3 ? StepState.complete : StepState.disabled,
             ),
           ],
         ),
@@ -616,7 +536,7 @@ class _Add_SState extends State<Add_S>  with SingleTickerProviderStateMixin {
   }
 
   continued() {
-    _currentStep < 3 ? setState(() => _currentStep += 1) : null;
+    _currentStep < 2 ? setState(() => _currentStep += 1) : null;
   }
 
   cancel() {

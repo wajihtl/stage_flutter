@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:easyship/screens/AboutUs.dart';
+import 'package:easyship/screens/ContactUs.dart';
+import 'package:easyship/screens/EditProfile_S.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -99,7 +102,8 @@ class _ProfileTab_SState extends State<ProfileTab_S> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               color: Color(0x8AF5F6F9),
-              onPressed: () {},
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfile_S())),
+
               child: Row(
                 children: [
                   Icon(Icons.edit),
@@ -114,12 +118,13 @@ class _ProfileTab_SState extends State<ProfileTab_S> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               color: Color(0x8AF5F6F9),
-              onPressed: () {},
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => AboutUs(Theme:Colors.cyanAccent[100]))),
+
               child: Row(
                 children: [
                   Icon(Icons.settings),
                   SizedBox(width: 20),
-                  Expanded(child: Text("Payment settings")),
+                  Expanded(child: Text("About us")),
                   Icon(Icons.arrow_forward_ios),
                 ],
               ),
@@ -129,12 +134,12 @@ class _ProfileTab_SState extends State<ProfileTab_S> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               color: Color(0x8AF5F6F9),
-              onPressed: () {},
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ContactUs(Theme:Colors.cyanAccent[100]))),
               child: Row(
                 children: [
-                  Icon(Icons.add),
+                  Icon(Icons.phone),
                   SizedBox(width: 20),
-                  Expanded(child: Text("text")),
+                  Expanded(child: Text("Contact us")),
                   Icon(Icons.arrow_forward_ios),
                 ],
               ),

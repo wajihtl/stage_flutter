@@ -1,5 +1,7 @@
-
 import 'package:easyship/screens/scnd_screen.dart';
+import 'package:easyship/tabs/Sender/Offers_S.dart';
+import 'package:easyship/tabs/Sender/Profile_S.dart';
+import 'package:easyship/widgets/Sender/Navigation_S.dart';
 import 'package:flutter/material.dart';
 
 class drawer_S extends StatelessWidget {
@@ -39,7 +41,8 @@ class drawer_S extends StatelessWidget {
                     child: Text('Home'),
                   ),
                 ]),
-                onPressed: () => print('test'),
+                onPressed: () => Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => Navigation_S())),
                 padding: EdgeInsets.only(left: 30.0, top: 20.0),
               ),
               FlatButton(
@@ -50,7 +53,8 @@ class drawer_S extends StatelessWidget {
                     child: Text('Settings'),
                   ),
                 ]),
-                onPressed: () => print('test'),
+                onPressed: () {},
+                // onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileTab_S())),
                 padding: EdgeInsets.only(left: 30.0, top: 30.0),
               ),
               FlatButton(

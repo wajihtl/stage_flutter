@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:easyship/screens/AboutUs.dart';
+import 'package:easyship/screens/ContactUs.dart';
+import 'package:easyship/screens/EditProfile_T.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -49,8 +52,8 @@ class _ProfileTab_TState extends State<ProfileTab_T> {
                     radius: 35,
                     backgroundImage: _image != null
                         ? FileImage(_image)
-                        : NetworkImage(
-                            "https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png"),
+                        : AssetImage(
+                            "assets/images/avatar.png"),
                   ),
                   onTap: () {
                     showModalBottomSheet(
@@ -99,7 +102,7 @@ class _ProfileTab_TState extends State<ProfileTab_T> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               color: Color(0x8AF5F6F9),
-              onPressed: () {},
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfile_T())),
               child: Row(
                 children: [
                   Icon(Icons.edit),
@@ -114,12 +117,12 @@ class _ProfileTab_TState extends State<ProfileTab_T> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               color: Color(0x8AF5F6F9),
-              onPressed: () {},
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => AboutUs(Theme:Colors.purpleAccent[700],))),
               child: Row(
                 children: [
                   Icon(Icons.settings),
                   SizedBox(width: 20),
-                  Expanded(child: Text("Payment settings")),
+                  Expanded(child: Text("About us")),
                   Icon(Icons.arrow_forward_ios),
                 ],
               ),
@@ -129,12 +132,12 @@ class _ProfileTab_TState extends State<ProfileTab_T> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               color: Color(0x8AF5F6F9),
-              onPressed: () {},
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ContactUs(Theme:Colors.purpleAccent[700],))),
               child: Row(
                 children: [
-                  Icon(Icons.add),
+                  Icon(Icons.phone),
                   SizedBox(width: 20),
-                  Expanded(child: Text("text")),
+                  Expanded(child: Text("Contact us")),
                   Icon(Icons.arrow_forward_ios),
                 ],
               ),
@@ -145,9 +148,9 @@ class _ProfileTab_TState extends State<ProfileTab_T> {
                 padding: EdgeInsets.symmetric(horizontal: 100,vertical: 10),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),
-                color:Colors.purple[700],
+                color:Colors.purpleAccent[700],
                 onPressed: () {},
-                child: Text('Déconnexion', style: TextStyle(color: Colors.white,fontSize: 18)),
+                child: Text('Log out', style: TextStyle(color: Colors.white,fontSize: 18)),
               ),
             ),
           ],
