@@ -8,10 +8,10 @@ class scnd_screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Stack(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.7,
+            height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/images/easyship.png'),
@@ -22,39 +22,65 @@ class scnd_screen extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              FlatButton(
-                child: Text(
-                  'DÉMO',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                padding: const EdgeInsets.all(15),
-                color: Theme.of(context).primaryColor,
-                textColor: Colors.white,
-                onPressed: () {
-
-                },
+              Text(
+                "WELCOME",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 55,
+                    fontWeight: FontWeight.bold),
               ),
-              FlatButton(
-                child: Text(
-                  'DÉMO',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                padding: const EdgeInsets.all(15),
-                color: Theme.of(context).primaryColor,
-                textColor: Colors.white,
-                onPressed: () {
+              Text(
+                "TO",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 55,
+                    fontWeight: FontWeight.bold),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.4),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RaisedButton(
+                        elevation: 10.0,
+                        child:  Padding(
+                          padding:  EdgeInsets.symmetric(horizontal: 60.0, vertical: 10.0),
+                          child: Text('I\'m a Traveler'),
+                        ),
+                        textColor: Colors.white,
+                        shape:  RoundedRectangleBorder(
+                          borderRadius:  BorderRadius.circular(30.0),
+                        ),
+                        color: Colors.purpleAccent[700],
+                        onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Navigation_T())),
 
-                },
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                   RaisedButton(
+                     elevation: 10.0,
+                    child: Padding(
+                      padding:  EdgeInsets.symmetric(horizontal: 60.0, vertical: 10.0),
+                      child:  Text('I\'m a Sender   '),
+                    ),
+                    textColor: Colors.white,
+                    shape:  RoundedRectangleBorder(
+                      borderRadius:  BorderRadius.circular(30.0),
+                    ),
+                    color: Colors.cyan[700],
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Navigation_S()))
+
+                  ),
+                ],
               ),
             ],
           )
