@@ -23,8 +23,8 @@ class _Navigation_SState extends State<Navigation_S> {
     OffersTab_S(),
     ChatTab_S(),
     NotifsTab_S(),
-    //Profile_loggedOut_S()
-     ProfileTab_S(),
+    Profile_loggedOut_S()
+    // ProfileTab_S(),
   ];
 
   void _onItemTapped(int index) {
@@ -71,7 +71,7 @@ class _Navigation_SState extends State<Navigation_S> {
       body: _widgetOptions[_selectedIndex],
       bottomNavigationBar: CurvedNavigationBar(
         height: 60,
-        color: Colors.cyanAccent[100],
+        color: Colors.cyanAccent[700],
         backgroundColor: Colors.transparent,
         items: <Widget>[
           Icon(Icons.airplanemode_active, color: Colors.white, size: 30),

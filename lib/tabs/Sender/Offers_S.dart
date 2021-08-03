@@ -22,7 +22,7 @@ class _OffersTab_SState extends State<OffersTab_S> {
             _search = !_search;
           });},
         child: Icon(_search? Icons.close : Icons.add,),
-        backgroundColor: Colors.cyanAccent[100],
+        backgroundColor: Colors.cyanAccent[700],
       ),
       body: !_search
           ? DefaultTabController(
@@ -33,8 +33,8 @@ class _OffersTab_SState extends State<OffersTab_S> {
               toolbarHeight: 74.0,
               elevation: 0.0,
               bottom: TabBar(
-                indicatorColor:Colors.cyanAccent[100],
-                labelColor: Colors.cyanAccent[100],
+                indicatorColor:Colors.cyanAccent[700],
+                labelColor: Colors.cyanAccent[700],
                 unselectedLabelColor: Colors.grey,
                 tabs: [
                   Tab(

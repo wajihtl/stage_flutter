@@ -28,13 +28,12 @@ class Profile_loggedOut_S extends StatelessWidget {
         ),
         Container(
             width: 350.0,
-            child: Expanded(
-                child: Text(
-                    "to get the most out of EASYSHIP, please login or create an account.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 15,
-                    )))),
+            child: Text(
+                "to get the most out of EASYSHIP, please login or create an account.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15,
+                ))),
         SizedBox(
           height: 30.0,
         ),
@@ -54,13 +53,13 @@ class Profile_loggedOut_S extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                 ),
                 padding: const EdgeInsets.all(15),
-                color: Colors.cyanAccent[100],
+                color: Colors.cyanAccent[700],
                 textColor: Colors.white,
                 onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => LoginPage(
-                              Theme: Colors.cyanAccent[100],
+                              Theme: Colors.cyanAccent[700],
                             ))),
               ),
             ),
@@ -77,13 +76,13 @@ class Profile_loggedOut_S extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                 ),
                 padding: const EdgeInsets.all(15),
-                color: Colors.cyanAccent[100],
+                color: Colors.cyanAccent[700],
                 textColor: Colors.white,
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => SignUpPage(
-                            Theme: Colors.cyanAccent[100],
+                            Theme: Colors.cyanAccent[700],
                           )),
                 ),
               ),

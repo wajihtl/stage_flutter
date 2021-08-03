@@ -1,6 +1,11 @@
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easyship/tabs/Sender/Profile_S.dart';
+import 'package:easyship/widgets/Sender/Navigation_S.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -15,31 +20,72 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   int _currentStep = 0;
-  StepperType stepperType = StepperType.vertical;
-  File _image;
-  List<File> _pickedIamages = [];
+  StepperType stepperType = StepperType.horizontal;
   Color _stepper_color1 = Colors.grey;
-
   Color _stepper_color2 = Colors.grey;
 
   String _dropdownValue = "Country";
   bool agree = false;
 
+  File _image;
+  List<File> _pickedIamages = [];
   final picker = ImagePicker();
 
   Future getImage(ImageSource source) async {
     final pickedFile = await picker.getImage(source: source);
-
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
-
         setState(() {
           _pickedIamages.add(File(pickedFile.path));
         });
       } else {
         print('No image selected.');
       }
+    });
+  }
+
+  TextEditingController _emailControl = new TextEditingController();
+  TextEditingController _passwordControl = new TextEditingController();
+
+  // firebase connect
+
+  bool _isLoading = false;
+  String _errMessage = "";
+
+  FirebaseAuth auth = FirebaseAuth.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  _signupAccount(String email, String password) {
+    setState(() {
+      _isLoading = !_isLoading;
+      _errMessage = "";
+    });
+    auth
+        .createUserWithEmailAndPassword(email: email, password: password)
+        .then((response) {
+      setState(() {
+        _isLoading = !_isLoading;
+      });
+
+      print(response);
+
+      // insert user firestore
+
+      firestore
+          .collection("users")
+          .doc(response.user.uid)
+          .set({"email": response.user.email, "Test": _emailControl.text}).then(
+              (value) => null);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Navigation_S()),
+      );
+    }).catchError((e) {
+      setState(() {
+        _isLoading = !_isLoading;
+        _errMessage = e.code;
+      });
     });
   }
 
@@ -144,6 +190,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   InputDecoration(labelText: 'Username'),
                             ),
                             TextFormField(
+                              controller: _emailControl,
                               decoration: InputDecoration(labelText: 'E-mail'),
                             ),
                             TextFormField(
@@ -173,6 +220,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               },
                             ),
                             TextFormField(
+                              controller: _passwordControl,
                               decoration:
                                   InputDecoration(labelText: 'Password'),
                             ),
@@ -263,7 +311,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                           ],
                         ),
-                        isActive: _currentStep >= 0,
+                        isActive: _currentStep >= 1,
                         state: _currentStep == 1
                             ? StepState.editing
                             : StepState.disabled,
@@ -295,8 +343,12 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   continued() {
-    _currentStep < 1 ? setState(() => _currentStep += 1) : null;
+    _currentStep == 1
+        ? _signupAccount(_emailControl.text, _passwordControl.text)
+        : null;
 
+    _currentStep < 1 ? setState(() => _currentStep += 1) : null;
+//coloring icons
     switch (_currentStep) {
       case 0:
         setState(() {
@@ -317,7 +369,7 @@ class _SignUpPageState extends State<SignUpPage> {
     _currentStep == 0
         ? Navigator.pop(context)
         : setState(() => _currentStep -= 1);
-
+// coloring icons
     switch (_currentStep) {
       case 0:
         setState(() {

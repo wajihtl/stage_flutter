@@ -5,7 +5,7 @@ Widget appBar_S(context, title, search) {
  // Widget appBar_S(BuildContext context, title, search) {
   return AppBar(
     elevation: 0.0,
-    backgroundColor: Colors.cyanAccent[100],
+    backgroundColor: Colors.cyanAccent[700],
     title: Center(
       child: Text(
         title,

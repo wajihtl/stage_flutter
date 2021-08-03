@@ -37,7 +37,7 @@ class _EditProfile_SState extends State<EditProfile_S> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.cyanAccent[100],
+        backgroundColor: Colors.cyanAccent[700],
         // automaticallyImplyLeading: false,
         title: Text('Profile '),
         centerTitle: true,
@@ -105,7 +105,7 @@ class _EditProfile_SState extends State<EditProfile_S> {
                               width: 4,
                               color: Theme.of(context).scaffoldBackgroundColor,
                             ),
-                            color: Colors.cyanAccent[100],
+                            color: Colors.cyanAccent[700],
                           ),
                           child: Icon(
                             Icons.edit,
@@ -142,7 +142,7 @@ class _EditProfile_SState extends State<EditProfile_S> {
                 ),
                 RaisedButton(
                   onPressed: () {},
-                  color: Colors.cyanAccent[100],
+                  color: Colors.cyanAccent[700],
                   padding: EdgeInsets.symmetric(horizontal: 50),
                   elevation: 2,
                   shape: RoundedRectangleBorder(

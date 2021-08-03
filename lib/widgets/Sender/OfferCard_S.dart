@@ -15,7 +15,7 @@ Widget OfferCard_S() {
                   children: <Widget>[
                     Row(
                       children: [
-                        Expanded(child: Center(child: Text(" Tunis, Tunisia-Paris, France", style: TextStyle(fontSize: 18.0, color: Colors.cyanAccent[200],),))),
+                        Expanded(child: Center(child: Text(" Tunis, Tunisia-Paris, France", style: TextStyle(fontSize: 18.0, color: Colors.cyanAccent[700],),))),
                         Icon(Icons.airplanemode_on)
                       ],
                     ),

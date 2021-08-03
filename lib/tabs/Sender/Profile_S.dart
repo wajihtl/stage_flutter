@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'dart:io';
-
 import 'package:easyship/screens/AboutUs.dart';
 import 'package:easyship/screens/ContactUs.dart';
 import 'package:easyship/screens/EditProfile_S.dart';
@@ -118,7 +116,7 @@ class _ProfileTab_SState extends State<ProfileTab_S> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               color: Color(0x8AF5F6F9),
-              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => AboutUs(Theme:Colors.cyanAccent[100]))),
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => AboutUs(Theme:Colors.cyanAccent[700]))),
 
               child: Row(
                 children: [
@@ -134,7 +132,7 @@ class _ProfileTab_SState extends State<ProfileTab_S> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15)),
               color: Color(0x8AF5F6F9),
-              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ContactUs(Theme:Colors.cyanAccent[100]))),
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ContactUs(Theme:Colors.cyanAccent[700]))),
               child: Row(
                 children: [
                   Icon(Icons.phone),
@@ -150,7 +148,7 @@ class _ProfileTab_SState extends State<ProfileTab_S> {
                 padding: EdgeInsets.symmetric(horizontal: 100,vertical: 10),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),
-                color:Colors.cyanAccent[100],
+                color:Colors.cyanAccent[700],
                 onPressed: () {},
                 child: Text('LogOut', style: TextStyle(color: Colors.white,fontSize: 18)),
               ),

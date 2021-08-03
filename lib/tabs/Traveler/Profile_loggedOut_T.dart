@@ -29,13 +29,12 @@ class Profile_loggedOut_T extends StatelessWidget {
         ),
         Container(
             width: 350.0,
-            child: Expanded(
-                child: Text(
-                    "To get the most out of EASYSHIP, please login or create an account.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 15,
-                    )))),
+            child: Text(
+                "To get the most out of EASYSHIP, please login or create an account.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15,
+                ))),
         SizedBox(
           height: 30.0,
         ),

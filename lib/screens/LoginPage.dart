@@ -293,7 +293,7 @@ class _LoginPageState extends State<LoginPage> {
         Padding(
           padding: EdgeInsets.only(top: 40),
           child: FlatButton(
-            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage())),
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage(Theme:widget.Theme))),
             child: RichText(
               text: TextSpan(children: [
                 TextSpan(

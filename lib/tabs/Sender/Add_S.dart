@@ -56,9 +56,9 @@ class _Add_SState extends State<Add_S> with SingleTickerProviderStateMixin {
     return Container(
       child: Theme(
         data: ThemeData(
-            primaryColor: Colors.cyanAccent[100],
+            primaryColor: Colors.cyanAccent[700],
             colorScheme: ColorScheme.light(
-              primary: Colors.cyanAccent[100],
+              primary: Colors.cyanAccent[700],
             )),
         child: Stepper(
           type: stepperType,
@@ -71,14 +71,14 @@ class _Add_SState extends State<Add_S> with SingleTickerProviderStateMixin {
               subtitle: _currentStep == 0
                   ? Icon(
                       Icons.airplanemode_on,
-                      color: Colors.cyanAccent[100],
+                      color: Colors.cyanAccent[700],
                     )
                   : null,
               title: Text(
                 "TRAVEL",
                 style: TextStyle(
                   fontSize: 18.0,
-                  color: Colors.cyanAccent[100],
+                  color: Colors.cyanAccent[700],
                 ),
               ),
               content: Column(
@@ -92,7 +92,7 @@ class _Add_SState extends State<Add_S> with SingleTickerProviderStateMixin {
                         "Departure",
                         style: TextStyle(
                           fontSize: 18.0,
-                          color: Colors.cyanAccent[100],
+                          color: Colors.cyanAccent[700],
                         ),
                       ))),
                     ],
@@ -154,7 +154,7 @@ class _Add_SState extends State<Add_S> with SingleTickerProviderStateMixin {
                         "Arrival",
                         style: TextStyle(
                           fontSize: 18.0,
-                          color: Colors.cyanAccent[100],
+                          color: Colors.cyanAccent[700],
                         ),
                       ))),
                     ],
@@ -216,7 +216,7 @@ class _Add_SState extends State<Add_S> with SingleTickerProviderStateMixin {
                         "Request Expiration Date",
                         style: TextStyle(
                           fontSize: 18.0,
-                          color: Colors.cyanAccent[100],
+                          color: Colors.cyanAccent[700],
                         ),
                       ))),
                     ],
@@ -229,7 +229,7 @@ class _Add_SState extends State<Add_S> with SingleTickerProviderStateMixin {
                       : '${_Expirationdate.day.toString()}/${_Expirationdate.month.toString()}/${_Expirationdate.year.toString()}'),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        primary: Colors.cyanAccent[100],
+                        primary: Colors.cyanAccent[700],
                         textStyle: TextStyle(fontWeight: FontWeight.bold)),
                     child: Text('Pick Date'),
                     onPressed: () {
@@ -272,14 +272,14 @@ class _Add_SState extends State<Add_S> with SingleTickerProviderStateMixin {
               subtitle: _currentStep == 1
                   ? Icon(
                       Icons.forward_to_inbox,
-                      color: Colors.cyanAccent[100],
+                      color: Colors.cyanAccent[700],
                     )
                   : null,
               title: Text(
                 "PACKAGE",
                 style: TextStyle(
                   fontSize: 18.0,
-                  color: Colors.cyanAccent[100],
+                  color: Colors.cyanAccent[700],
                 ),
               ),
               content: Column(
@@ -293,7 +293,7 @@ class _Add_SState extends State<Add_S> with SingleTickerProviderStateMixin {
                         "PACKAGE",
                         style: TextStyle(
                           fontSize: 18.0,
-                          color: Colors.cyanAccent[100],
+                          color: Colors.cyanAccent[700],
                         ),
                       ))),
                     ],
@@ -399,14 +399,14 @@ class _Add_SState extends State<Add_S> with SingleTickerProviderStateMixin {
               subtitle: _currentStep == 2
                   ? Icon(
                       Icons.done_all,
-                      color: Colors.cyanAccent[100],
+                      color: Colors.cyanAccent[700],
                     )
                   : null,
               title: Text(
                 "CONFIRM",
                 style: TextStyle(
                   fontSize: 18.0,
-                  color: Colors.cyanAccent[100],
+                  color: Colors.cyanAccent[700],
                 ),
               ),
               content: Column(
@@ -420,7 +420,7 @@ class _Add_SState extends State<Add_S> with SingleTickerProviderStateMixin {
                         "CONFIRM",
                         style: TextStyle(
                           fontSize: 18.0,
-                          color: Colors.cyanAccent[100],
+                          color: Colors.cyanAccent[700],
                         ),
                       ))),
                     ],
@@ -438,7 +438,7 @@ class _Add_SState extends State<Add_S> with SingleTickerProviderStateMixin {
                             SizedBox(
                               height: 50.0,
                               child: Container(
-                                color: Colors.cyanAccent[100],
+                                color: Colors.cyanAccent[700],
                                 child: Center(
                                   child: Text(
                                     "Request information",
