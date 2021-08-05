@@ -72,10 +72,11 @@ class _SignUpPageState extends State<SignUpPage> {
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+  bool isValid = false;
+
   void _signupAccount() async {
-    final isValid = _formKey.currentState.validate();
+
     if (isValid) {
-      _formKey.currentState.save();
       try {
         if (_image == null) {
           _globalMethods.authErrorHandle('Please pick an image', context);
@@ -84,14 +85,11 @@ class _SignUpPageState extends State<SignUpPage> {
             _isLoading = true;
           });
 
-          final ref = FirebaseStorage.instance
-              .ref()
-              .child('usersImages')
+          final ref = FirebaseStorage.instance.ref().child('usersImages')
               .child(_FirstName.text + '.jpg');
           await ref.putFile(_image);
           url = await ref.getDownloadURL();
-          await auth.createUserWithEmailAndPassword(
-              email: _Email.text.trim(), password: _Password.text.trim());
+          await auth.createUserWithEmailAndPassword(email: _Email.text.trim(), password: _Password.text.trim());
           final User user = auth.currentUser;
           final _uid = user.uid;
 
@@ -160,7 +158,13 @@ class _SignUpPageState extends State<SignUpPage> {
                                         backgroundColor: agree
                                             ? widget.Theme
                                             : Colors.grey[350]),
-                                    onPressed: agree ? onStepContinue : null,
+                                    onPressed: () {
+                                      setState(() {
+                                        _currentStep <1? isValid = _formKey.currentState.validate() : isValid = true;
+                                      });
+                                      if(agree && isValid)
+                                        onStepContinue();
+                                    },
                                     child: Text('NEXT'),
                                   ),
                                 ),
@@ -185,7 +189,13 @@ class _SignUpPageState extends State<SignUpPage> {
                                       backgroundColor: agree
                                           ? widget.Theme
                                           : Colors.grey[350]),
-                                  onPressed: agree ? onStepContinue : null,
+                                  onPressed: () {
+                                    setState(() {
+                                      _currentStep <1? isValid = _formKey.currentState.validate(): isValid = true;
+                                    });
+                                    if(agree && isValid)
+                                      onStepContinue();
+                                  },
                                   child: Text('NEXT'),
                                 ),
                                 SizedBox(width: 10.0),
@@ -221,35 +231,55 @@ class _SignUpPageState extends State<SignUpPage> {
                                 },
                                 keyboardType: TextInputType.name,
                                 controller: _FirstName,
-                                decoration:
-                                    InputDecoration(labelText: 'First Name'),
+                                decoration: InputDecoration(labelText: 'First Name'),
                               ),
                               TextFormField(
                                 key: ValueKey('LastName'),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'name cannot be null';
+                                  }
+                                  return null;
+                                },
                                 keyboardType: TextInputType.name,
                                 controller: _LastName,
-                                decoration:
-                                    InputDecoration(labelText: 'Last Name'),
+                                decoration: InputDecoration(labelText: 'Last Name'),
                               ),
                               TextFormField(
                                 key: ValueKey('UserName'),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'name cannot be null';
+                                  }
+                                  return null;
+                                },
                                 keyboardType: TextInputType.name,
                                 controller: _UserName,
-                                decoration:
-                                    InputDecoration(labelText: 'Username'),
+                                decoration: InputDecoration(labelText: 'Username'),
                               ),
                               TextFormField(
                                 key: ValueKey('Email'),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'name cannot be null';
+                                  }
+                                  return null;
+                                },
                                 keyboardType: TextInputType.emailAddress,
                                 controller: _Email,
                                 decoration: InputDecoration(labelText: 'E-mail'),
                               ),
                               TextFormField(
                                 key: ValueKey('PhoneNumber'),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'name cannot be null';
+                                  }
+                                  return null;
+                                },
                                 keyboardType: TextInputType.phone,
                                 controller: _PhoneNumber,
-                                decoration:
-                                    InputDecoration(labelText: 'Phone Number'),
+                                decoration: InputDecoration(labelText: 'Phone Number'),
                               ),
                               DropdownButton<String>(
                                 underline: Divider(
@@ -257,11 +287,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                 ),
                                 isExpanded: true,
                                 hint: TextFormField(
-                                  decoration:
-                                      InputDecoration(labelText: _dropdownValuee),
+                                  decoration: InputDecoration(labelText: _dropdownValuee),
                                 ),
-                                items: <String>['France', 'Tunis']
-                                    .map((String country) {
+                                items: <String>['France', 'Tunis'].map((String country) {
                                   return DropdownMenuItem<String>(
                                     value: country,
                                     child: Text(country),
@@ -276,6 +304,12 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                               TextFormField(
                                 key: ValueKey('Password1'),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'name cannot be null';
+                                  }
+                                  return null;
+                                },
                                 obscureText: _obscureText1,
                                 keyboardType: TextInputType.visiblePassword,
                                 controller: _Password,
@@ -287,14 +321,18 @@ class _SignUpPageState extends State<SignUpPage> {
                                         _obscureText1 = !_obscureText1;
                                       });
                                     },
-                                    child: Icon(_obscureText1
-                                        ? Icons.visibility
-                                        : Icons.visibility_off),
+                                    child: Icon(_obscureText1 ? Icons.visibility : Icons.visibility_off),
                                   ),
                                 ),
                               ),
                               TextFormField(
                                 key: ValueKey('Password2'),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'name cannot be null';
+                                  }
+                                  return null;
+                                },
                                 obscureText: _obscureText2,
                                 keyboardType: TextInputType.visiblePassword,
                                 decoration: InputDecoration(
