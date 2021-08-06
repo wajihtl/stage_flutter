@@ -1,88 +1,12 @@
-import 'package:easyship/tabs/Sender/Chat_S.dart';
-import 'package:easyship/widgets/Sender/MessageChat.dart';
+import 'package:easyship/services/global_method.dart';
+import 'package:easyship/tabs/Sender/Offers_S.dart';
+import 'package:easyship/widgets/Sender/Navigation_S.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'EditProfile_S.dart';
 import 'SingUpPage.dart';
 
-/*
 class LoginPage extends StatefulWidget {
-  LoginPage({Key key}) : super(key: key);
-
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  TextEditingController _emailControl = new TextEditingController();
-  TextEditingController _passwordControl = new TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.cyanAccent[100],
-        title: Text('Login'),
-      ),
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(15),
-              child: TextField(
-                decoration:
-                    InputDecoration(labelText: 'Email', errorText: null),
-                controller: _emailControl,
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(15),
-              child: TextField(
-                decoration: InputDecoration(labelText: 'Password'),
-                controller: _passwordControl,
-                obscureText: true,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FlatButton(
-                child: Text(
-                  'Login',
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                padding: const EdgeInsets.all(15),
-                color: Colors.cyanAccent[100],
-                textColor: Colors.white,
-                onPressed: () {
-
-                },
-              ),
-            ),
-            FlatButton(
-              child: Text("Create account"),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignUpPage()),
-                );
-              },
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-*/
-class LoginPage extends StatefulWidget {
-
   final Color Theme;
 
   const LoginPage({Key key, this.Theme}) : super(key: key);
@@ -92,7 +16,38 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String email, password;
+  final FocusNode _passwordFocusNode = FocusNode();
+  bool _obscureText = true;
+  String _emailAddress = '';
+  String _password = '';
+  final _formKey = GlobalKey<FormState>();
+
+  GlobalMethods _globalMethods = GlobalMethods();
+  bool _isLoading = false;
+  FirebaseAuth auth = FirebaseAuth.instance;
+  @override
+  void _submitForm() async {
+    setState(() {
+      _isLoading = true;
+    });
+    try {
+      await auth
+          .signInWithEmailAndPassword(
+              email: _emailAddress.toLowerCase().trim(),
+              password: _password.trim())
+          .then((value) => Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Navigation_S())));
+     print('user connected ${auth.currentUser.uid}');
+    } catch (error) {
+      _globalMethods.authErrorHandle(error.message, context);
+      print('error occurred ${error.message}');
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
   Widget _buildLogo() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -119,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
         keyboardType: TextInputType.emailAddress,
         onChanged: (value) {
           setState(() {
-            email = value;
+            _emailAddress = value;
           });
         },
         decoration: InputDecoration(
@@ -127,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
               Icons.email,
               color: widget.Theme,
             ),
-            labelText: 'E-mail'),
+            labelText: 'Email Address'),
       ),
     );
   }
@@ -136,11 +91,11 @@ class _LoginPageState extends State<LoginPage> {
     return Padding(
       padding: EdgeInsets.all(8),
       child: TextFormField(
-        keyboardType: TextInputType.text,
+        keyboardType: TextInputType.visiblePassword,
         obscureText: true,
         onChanged: (value) {
           setState(() {
-            password = value;
+            _password = value;
           });
         },
         decoration: InputDecoration(
@@ -150,11 +105,14 @@ class _LoginPageState extends State<LoginPage> {
           ),
           labelText: 'Password',
         ),
+        onSaved: (value) {
+          _password = value;
+        },
       ),
     );
   }
 
-  Widget _buildForgetPasswordButton() {
+  /*Widget _buildForgetPasswordButton() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -165,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ],
     );
-  }
+  }*/
 
   Widget _buildLoginButton() {
     return Row(
@@ -181,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
             ),
-            onPressed: () {},
+            onPressed: _submitForm,
             child: Text(
               "Login",
               style: TextStyle(
@@ -196,7 +154,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildOrRow() {
+  /*Widget _buildOrRow() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -211,9 +169,9 @@ class _LoginPageState extends State<LoginPage> {
         )
       ],
     );
-  }
+  }*/
 
-  Widget _buildSocialBtnRow() {
+  /*Widget _buildSocialBtnRow() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -240,7 +198,7 @@ class _LoginPageState extends State<LoginPage> {
         )
       ],
     );
-  }
+  }*/
 
   Widget _buildContainer() {
     return Row(
@@ -266,16 +224,33 @@ class _LoginPageState extends State<LoginPage> {
                     Text(
                       "Login",
                       style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.height / 30, fontWeight: FontWeight.bold,
+                        fontSize: MediaQuery.of(context).size.height / 30,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
                 ),
                 _buildEmailRow(),
                 _buildPasswordRow(),
-                SizedBox(height: 30.0,),
+                SizedBox(
+                  height: 30.0,
+                ),
                 //_buildForgetPasswordButton(),
                 _buildLoginButton(),
+                _isLoading
+                    ? Container(
+                    child: Column(
+                      children: [
+                        Text("Loggin in"),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        CircularProgressIndicator(
+                          backgroundColor: widget.Theme,
+                        ),
+                      ],
+                    ))
+                    :Divider(),
                 //_buildOrRow(),
                 //_buildSocialBtnRow(),
               ],
@@ -293,7 +268,10 @@ class _LoginPageState extends State<LoginPage> {
         Padding(
           padding: EdgeInsets.only(top: 40),
           child: FlatButton(
-            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage(Theme:widget.Theme))),
+            onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => SignUpPage(Theme: widget.Theme))),
             child: RichText(
               text: TextSpan(children: [
                 TextSpan(

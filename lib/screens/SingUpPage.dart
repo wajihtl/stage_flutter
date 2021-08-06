@@ -75,7 +75,6 @@ class _SignUpPageState extends State<SignUpPage> {
 
   bool isValid = false;
 
-
   void _signupAccount() async {
     if (isValid) {
       try {
@@ -300,7 +299,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                 ),
                                 isExpanded: true,
                                 hint: TextFormField(
-
                                   decoration: InputDecoration(
                                       labelText: _dropdownValuee),
                                 ),
@@ -346,7 +344,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               TextFormField(
                                 key: ValueKey('Password2'),
                                 validator: (value) {
-                                  if (!equals (value, _Password.text ) ){
+                                  if (!equals(value, _Password.text)) {
                                     return 'Passwords dont match';
                                   }
                                   return null;
@@ -542,4 +540,3 @@ class _SignUpPageState extends State<SignUpPage> {
     // _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
   }
 }
-

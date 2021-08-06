@@ -1,5 +1,6 @@
 import 'package:easyship/tabs/Sender/Add_S.dart';
 import 'package:easyship/widgets/Sender/OfferCard_S.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class OffersTab_S extends StatefulWidget {
@@ -12,6 +13,8 @@ class _OffersTab_SState extends State<OffersTab_S> {
   bool _search = false;
   String firstTitle = 'REQUESTS';
   String secondTitle = 'ADD REQUESTS';
+  FirebaseAuth auth = FirebaseAuth.instance;
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +41,11 @@ class _OffersTab_SState extends State<OffersTab_S> {
                 unselectedLabelColor: Colors.grey,
                 tabs: [
                   Tab(
-                      text: 'ALL REQUESTS',
-                      icon: Icon(Icons.auto_awesome_motion)),
+                      text: "ALL FLIGHTS",
+                      icon: Icon(Icons.airplanemode_active)),
                   Tab(
-                      text: 'MY REQUESTS',
-                      icon: Icon(Icons.bookmarks_rounded)),
+                      text: 'MY PACKAGES',
+                      icon: Icon(Icons.send)),
                 ],
               ),
             ),
