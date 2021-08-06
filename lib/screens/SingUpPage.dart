@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:ui';
+import 'package:validators/validators.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easyship/services/global_method.dart';
@@ -74,8 +75,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
   bool isValid = false;
 
-  void _signupAccount() async {
 
+  void _signupAccount() async {
     if (isValid) {
       try {
         if (_image == null) {
@@ -85,11 +86,14 @@ class _SignUpPageState extends State<SignUpPage> {
             _isLoading = true;
           });
 
-          final ref = FirebaseStorage.instance.ref().child('usersImages')
+          final ref = FirebaseStorage.instance
+              .ref()
+              .child('usersImages')
               .child(_FirstName.text + '.jpg');
           await ref.putFile(_image);
           url = await ref.getDownloadURL();
-          await auth.createUserWithEmailAndPassword(email: _Email.text.trim(), password: _Password.text.trim());
+          await auth.createUserWithEmailAndPassword(
+              email: _Email.text.trim(), password: _Password.text.trim());
           final User user = auth.currentUser;
           final _uid = user.uid;
 
@@ -160,10 +164,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                             : Colors.grey[350]),
                                     onPressed: () {
                                       setState(() {
-                                        _currentStep <1? isValid = _formKey.currentState.validate() : isValid = true;
+                                        _currentStep < 1
+                                            ? isValid =
+                                                _formKey.currentState.validate()
+                                            : isValid = true;
                                       });
-                                      if(agree && isValid)
-                                        onStepContinue();
+                                      if (agree && isValid) onStepContinue();
                                     },
                                     child: Text('NEXT'),
                                   ),
@@ -191,10 +197,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                           : Colors.grey[350]),
                                   onPressed: () {
                                     setState(() {
-                                      _currentStep <1? isValid = _formKey.currentState.validate(): isValid = true;
+                                      _currentStep < 1
+                                          ? isValid =
+                                              _formKey.currentState.validate()
+                                          : isValid = true;
                                     });
-                                    if(agree && isValid)
-                                      onStepContinue();
+                                    if (agree && isValid) onStepContinue();
                                   },
                                   child: Text('NEXT'),
                                 ),
@@ -225,61 +233,66 @@ class _SignUpPageState extends State<SignUpPage> {
                                 key: ValueKey('FirestName'),
                                 validator: (value) {
                                   if (value.isEmpty) {
-                                    return 'name cannot be null';
+                                    return 'name cannot be empty';
                                   }
                                   return null;
                                 },
                                 keyboardType: TextInputType.name,
                                 controller: _FirstName,
-                                decoration: InputDecoration(labelText: 'First Name'),
+                                decoration:
+                                    InputDecoration(labelText: 'First Name'),
                               ),
                               TextFormField(
                                 key: ValueKey('LastName'),
                                 validator: (value) {
                                   if (value.isEmpty) {
-                                    return 'name cannot be null';
+                                    return 'Last name cannot be empty';
                                   }
                                   return null;
                                 },
                                 keyboardType: TextInputType.name,
                                 controller: _LastName,
-                                decoration: InputDecoration(labelText: 'Last Name'),
+                                decoration:
+                                    InputDecoration(labelText: 'Last Name'),
                               ),
                               TextFormField(
                                 key: ValueKey('UserName'),
                                 validator: (value) {
                                   if (value.isEmpty) {
-                                    return 'name cannot be null';
+                                    return 'name cannot be empty';
                                   }
                                   return null;
                                 },
                                 keyboardType: TextInputType.name,
                                 controller: _UserName,
-                                decoration: InputDecoration(labelText: 'Username'),
+                                decoration:
+                                    InputDecoration(labelText: 'Username'),
                               ),
                               TextFormField(
                                 key: ValueKey('Email'),
                                 validator: (value) {
-                                  if (value.isEmpty) {
-                                    return 'name cannot be null';
+                                  if (!isEmail(value)) {
+                                    return 'Wrong Format';
                                   }
                                   return null;
                                 },
                                 keyboardType: TextInputType.emailAddress,
                                 controller: _Email,
-                                decoration: InputDecoration(labelText: 'E-mail'),
+                                decoration:
+                                    InputDecoration(labelText: 'E-mail'),
                               ),
                               TextFormField(
                                 key: ValueKey('PhoneNumber'),
                                 validator: (value) {
                                   if (value.isEmpty) {
-                                    return 'name cannot be null';
+                                    return 'Phone number cannot be empty';
                                   }
                                   return null;
                                 },
                                 keyboardType: TextInputType.phone,
                                 controller: _PhoneNumber,
-                                decoration: InputDecoration(labelText: 'Phone Number'),
+                                decoration:
+                                    InputDecoration(labelText: 'Phone Number'),
                               ),
                               DropdownButton<String>(
                                 underline: Divider(
@@ -287,9 +300,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                 ),
                                 isExpanded: true,
                                 hint: TextFormField(
-                                  decoration: InputDecoration(labelText: _dropdownValuee),
+
+                                  decoration: InputDecoration(
+                                      labelText: _dropdownValuee),
                                 ),
-                                items: <String>['France', 'Tunis'].map((String country) {
+                                items: <String>['France', 'Tunis']
+                                    .map((String country) {
                                   return DropdownMenuItem<String>(
                                     value: country,
                                     child: Text(country),
@@ -306,7 +322,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 key: ValueKey('Password1'),
                                 validator: (value) {
                                   if (value.isEmpty) {
-                                    return 'name cannot be null';
+                                    return 'Password cannot be empty';
                                   }
                                   return null;
                                 },
@@ -321,15 +337,17 @@ class _SignUpPageState extends State<SignUpPage> {
                                         _obscureText1 = !_obscureText1;
                                       });
                                     },
-                                    child: Icon(_obscureText1 ? Icons.visibility : Icons.visibility_off),
+                                    child: Icon(_obscureText1
+                                        ? Icons.visibility
+                                        : Icons.visibility_off),
                                   ),
                                 ),
                               ),
                               TextFormField(
                                 key: ValueKey('Password2'),
                                 validator: (value) {
-                                  if (value.isEmpty) {
-                                    return 'name cannot be null';
+                                  if (!equals (value, _Password.text ) ){
+                                    return 'Passwords dont match';
                                   }
                                   return null;
                                 },
@@ -359,8 +377,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                     },
                                   ),
                                   Container(
-                                    padding:
-                                        EdgeInsets.only(top: 30.0, bottom: 30.0),
+                                    padding: EdgeInsets.only(
+                                        top: 30.0, bottom: 30.0),
                                     width: 200.0,
                                     child: Text(
                                       'I have read and accept terms and conditions.',
@@ -524,3 +542,4 @@ class _SignUpPageState extends State<SignUpPage> {
     // _currentStep > 0 ? setState(() => _currentStep -= 1) : null;
   }
 }
+
